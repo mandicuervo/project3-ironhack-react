@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import AuthContext  from '../../contexts/AuthContext'
 import { useContext, useEffect, useState } from 'react';
 import { logout } from '../../stores/AccessTokenStore'
+import Sidebar from '../Sidebar/Sidebar';
 
 
 export default function Navbar() {
@@ -44,19 +45,16 @@ export default function Navbar() {
                     { !currentUser && <Link to="/login">Login</Link> }
                     { !currentUser && <Link to="/register">Register</Link> }  
                     { currentUser && <Link onClick={userLogOut}><span>Logout</span></Link> }
-                    { currentUser && <Link to="/account">
+                    { currentUser && <Link to="/account/edit">
                         <div className="image-profile" style={styles} onClick={openSidebar}></div>
                     </Link>}
                 </div>
             </div>
             {
                 isSidearOpen && 
-                <>
-                    <div className='sidebar-container'>
-                        Hola
-                    </div>
-                    <div className='transparent-layer' onClick={closeSideBar}></div>
-                </>
+                <Sidebar 
+                    closeSideBar = { closeSideBar }
+                />
             }
         </div>
     )

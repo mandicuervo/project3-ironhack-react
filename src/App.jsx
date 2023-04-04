@@ -10,6 +10,7 @@ import Feed from './views/Feed/Feed'
 import HomePage from './views/HomePage/HomePage'
 import Register from './views/Register/Register'
 import MyAccount from './views/MyAccount/MyAccount'
+import { Navigate } from 'react-router-dom'
 
 function App() {
   return (
@@ -26,12 +27,14 @@ function App() {
               </ProtectedRoute>
           } />
 
-          <Route path="account" element={
+          <Route path="account/:component" element={
             <ProtectedRoute>
                 <MyAccount />
             </ProtectedRoute>
           } />
-        </Routes>
+
+          <Route path="*" element={<Navigate to="/" replace />} />
+        </Routes>        
     </div>
   )
 }

@@ -20,18 +20,21 @@ export default function Sidebar({ closeSideBar }) {
 
     const userLogout = () => {
         logout();
+        closeSideBar();
     }
 
     return(
         <div className="Sidebar">
             <div className='sidebar-container'>
-                { currentUser && <Link to="/account/edit">
-                <div className="image-profile" style={styles}></div>
-                </Link> }
-                { currentUser && <Link to="/account/downloads"><h5>Downloads</h5></Link>}
-                { currentUser && <Link to="/account/favorites"><h5>Favorites</h5></Link>}
-                { currentUser && <Link to="/account/my-catalog"><h5>My catalog</h5></Link>}
-                { currentUser && <Link onClick={userLogout}><span>Logout</span></Link> }
+                { currentUser &&
+                    <>
+                    <Link to="/account/edit"><div className="image-profile" style={styles} onClick={closeSideBar}></div></Link> 
+                    <Link to="/account/downloads" onClick={closeSideBar}><h5>Downloads</h5></Link>
+                    <Link to="/account/favorites" onClick={closeSideBar}><h5>Favorites</h5></Link>
+                    <Link to="/account/my-catalog" onClick={closeSideBar}><h5>My catalog</h5></Link>
+                    <Link onClick={userLogout}><span>Logout</span></Link> 
+                    </>
+                }
             </div>
             <div className='transparent-layer' onClick={closeSideBar}></div>
         </div>

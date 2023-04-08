@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import EditProfile from '../../components/EditProfile/EditProfile';
+import MyCatalog from '../../components/MyCatalog/MyCatalog';
 import './MyAccount.css'
 
 export default function MyAccount() {
@@ -15,21 +16,24 @@ export default function MyAccount() {
             setComponentToShow('downloads')
         } else if(location.pathname === '/account/favorites') {
             setComponentToShow('favorites')
-        } else if(location.pathname === '/account/my-beats') {
-            setComponentToShow('my-beats') 
+        } else if(location.pathname === '/account/my-catalog') {
+            setComponentToShow('my-catalog') 
         } else {
             navigate('/account/edit')
-        }
+        } 
     })
 
     return(
         <div className='MyAccount'>
-            <h1>My Account</h1>
             <Link to='/account/edit'>Edit Profile</Link>
             <Link to='/account/downloads'>Downloads</Link>
             <Link to='/account/favorites'>Favorites</Link>
+            <Link to='/account/my-catalog'>My Beats</Link>
             {
                 componentToShow === 'edit' && <EditProfile />
+            }
+            {
+                componentToShow === 'my-catalog' && <MyCatalog />
             }
         </div>
     )

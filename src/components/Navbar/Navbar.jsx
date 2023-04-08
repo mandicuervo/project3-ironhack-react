@@ -2,9 +2,8 @@ import './Navbar.css'
 import { Link } from 'react-router-dom'
 import AuthContext  from '../../contexts/AuthContext'
 import { useContext, useEffect, useState } from 'react';
-import { logout } from '../../stores/AccessTokenStore'
 import Sidebar from '../Sidebar/Sidebar';
-
+import SearchBar from '../SearchBar/SearchBar';
 
 export default function Navbar() {
     const [bgImage, setBgImage] = useState('https://res.cloudinary.com/dgnace8dp/image/upload/v1676728201/profile-default_zk16xw.jpg')
@@ -22,10 +21,6 @@ export default function Navbar() {
         }
     }, [currentUser])
 
-    
-    const userLogOut = () => {
-        logout();
-    };
 
     const openSidebar = () => {
         setIsSidebarOpen(true)
@@ -41,13 +36,13 @@ export default function Navbar() {
                 <div className='title-navbar'>
                     <Link to="/feed"><h3>B E A T S</h3></Link>
                 </div>
+                <div className='search-bar'>
+                    <SearchBar />
+                </div>
                 <div className='links-navbar'>
                     { !currentUser && <Link to="/login">Login</Link> }
                     { !currentUser && <Link to="/register">Register</Link> }  
-                    { currentUser && <Link onClick={userLogOut}><span>Logout</span></Link> }
-                    { currentUser && <Link to="/account/edit">
-                        <div className="image-profile" style={styles} onClick={openSidebar}></div>
-                    </Link>}
+                    { currentUser && <div className="image-profile" style={styles} onClick={openSidebar}></div> }
                 </div>
             </div>
             {

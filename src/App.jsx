@@ -11,15 +11,19 @@ import HomePage from './views/HomePage/HomePage'
 import Register from './views/Register/Register'
 import MyAccount from './views/MyAccount/MyAccount'
 import { Navigate } from 'react-router-dom'
+import Profile from './views/Profile/Profile'
+import PlayerView from './views/PlayerView/PlayerView'
 
 function App() {
   return (
     <div className="App">
       <Navbar />
+      <PlayerView />
       <Routes>
           <Route path="/" element={ <HomePage /> } />
           <Route path="login" element={<Login />} />
           <Route path="register" element={<Register/>} />
+          <Route path="profile/:username" element={<Profile />} />
 
           <Route path="feed" element={
               <ProtectedRoute>

@@ -1,70 +1,72 @@
-import { useFormik } from "formik";
-import FormControl from '../../components/FormControl/FormControl'
-import Input from '../../components/Input/Input'
-import { registerSchema } from "../../schemas/registerSchema";
-import AuthContext from "../../contexts/AuthContext";
-
-const initialValues = {
-    name: '',
-    password: '',
-    bio: ''
-}
+import { useContext, useEffect, useState } from "react"
+import { useNavigate } from "react-router-dom";
+import AuthContext from "../../contexts/AuthContext"
+import { editUser } from "../../services/UserService";
 
 export default function EditProfile() {
+    const [image, setImage] = useState([]);
+    const [user, setUser] = useState({
+        name: "",
+        bio: ""
+    })
+    const { currentUser } = useContext(AuthContext);
+    const navigate = useNavigate();
 
-    const {
-        values, errors, touched, handleChange, handleBlur, isSubmitting, handleSubmit, setSubmitting, setFieldError
-    } = useFormik({
-        initialValues: initialValues, 
-        validateOnBlur: true, 
-        validateOnChange: false, 
-        validationSchema: registerSchema,
+    useEffect(() => {
+        if(currentUser) {
+            setUser({
+                name: currentUser.name,
+                bio: currentUser.bio
+            })
+        }
+    }, [currentUser])
+
+
+    const handleOnChange = (e) => {
+        const { name, value, type, files } = e.target;
+        if(type !== 'file') {
+            setUser({ ...user, [name]: value });
+        } else {
+            setImage(files);
+        }
+    };
+    
+    const handleOnSubmit = (e) => {
+        e.preventDefault()
+        let formData = new FormData();
+
+        formData.append("_id", currentUser["_id"]);
+    
+        for (let data in user) {
+            formData.append(data, user[data]);
+        }
+    
+        for (let img of image) {
+            formData.append("image", img);
+        }
+        
+        editUser(formData)
+        .then(response => {
+            navigate(`/profile/${currentUser.username}`)
         })
+        .catch(err => console.log(err))
+    }
+
     return(
         <div className="EditProfile">
-            <div className="title-profile">
-                <h3>Edit My Personal Information</h3>
-                <p><strong>Be carefull, you'll replace your current information</strong></p>
-            </div>
-            <div className="content-form-profile">
-                <form>
-                    <FormControl text='Name' error={touched.name && errors.name} htmlFor='name'>
-                        <Input
-                            id='name'
-                            name='name'
-                            onChange = { handleChange }
-                            onBlur = { handleBlur }
-                            value = { values.name }
-                            error = { touched.name && errors.name }
-                            placeholder = 'Choose your name...'
-                        />
-                    </FormControl>
-                    <FormControl text='Password' error={touched.password && errors.password} htmlFor='password'>
-                        <Input
-                            id='password'
-                            password='password'
-                            onChange = { handleChange }
-                            onBlur = { handleBlur }
-                            value = { values.password }
-                            error = { touched.password && errors.password }
-                            placeholder = 'Choose your password...'
-                        />
-                    </FormControl>
-                    <FormControl text='Bio' error={touched.bio && errors.bio} htmlFor='bio'>
-                        <Input
-                            id='bio'
-                            bio='bio'
-                            onChange = { handleChange }
-                            onBlur = { handleBlur }
-                            value = { values.bio }
-                            error = { touched.bio && errors.bio }
-                            placeholder = 'Choose your bio...'
-                        />
-                    </FormControl>
-                    
-                </form>
-            </div>
+            <form onSubmit={ handleOnSubmit }>
+                <div className="form-edit-profile">
+                    <label>Image</label>
+                    <input name= 'image' type='file' onChange={handleOnChange} />
+                
+                    <label>Name</label>
+                    <input name= 'name' value={user.name} type='text' onChange={handleOnChange} />
 
+                    <label>Bio</label>
+                    <input name= 'bio' value={user.bio} type='text' onChange={handleOnChange} />
+                </div>
+                <button type="submit">Submit</button>
+            </form>
         </div>
     )
 }

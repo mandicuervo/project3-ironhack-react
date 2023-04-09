@@ -26,7 +26,6 @@ export const AuthProvider = ({ children }) => {
       navigate('/feed')
     }
     // Lo guaaardo
-    console.log('entra en login', token)
     setAccessToken(token);
     getCurrentUser(navigateToFeed)
 

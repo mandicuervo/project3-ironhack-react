@@ -10,9 +10,16 @@ import {
   IoPauseSharp,
 } from 'react-icons/io5';
 
+import {
+    IoMdVolumeHigh,
+    IoMdVolumeOff,
+    IoMdVolumeLow,
+} from 'react-icons/io';
+
 export default function ControlsPlayer({ audioRef, progressBarRef, duration, setTimeProgress, tracks, trackIndex, setTrackIndex, setCurrentTrack }) {
     const [ isPlaying, setIsPlaying ] = useState(false);
-    const [volume, setVolume] = useState(60);
+    const [ volume, setVolume ] = useState(60);
+    const [ muteVolume, setMuteVolume ] = useState(false);
 
     const togglePlayPause = () => {
         setIsPlaying((prev) => !prev);
@@ -37,7 +44,7 @@ export default function ControlsPlayer({ audioRef, progressBarRef, duration, set
     };
 
     const handleNext = () => {
-        if (trackIndex >= tracks?.length - 1) {
+        if (trackIndex >= tracks.length - 1) {
             setTrackIndex(0);
             setCurrentTrack(tracks[0]);
           } else {
@@ -75,6 +82,13 @@ export default function ControlsPlayer({ audioRef, progressBarRef, duration, set
         }
       }, [volume, audioRef]);
 
+      useEffect(() => {
+        if (audioRef) {
+            audioRef.current.volume = volume/ 100;
+            audioRef.current.muted = muteVolume;
+        }
+      }, [volume, audioRef, muteVolume]); 
+
     return (
         <div className='controls-wrapper'>
             <div className='controls'>
@@ -99,8 +113,17 @@ export default function ControlsPlayer({ audioRef, progressBarRef, duration, set
                 </button>
 
                 <div className="volume">
-                    <button>icons</button>
+                    <button onClick={() => setVolume((prev) => !prev)}>
+                        {muteVolume || volume < 5 ? (
+                            <IoMdVolumeOff />
+                            ) : volume < 40 ? (
+                                <IoMdVolumeLow />
+                            ) : (
+                                <IoMdVolumeHigh />
+                            )}
+                        </button>
                     <input 
+                        style={{background: `linear-gradient(to right, #f50 ${volume}%, #ccc ${volume}%)`,}}
                         type="range" 
                         min={0} 
                         max={100} 

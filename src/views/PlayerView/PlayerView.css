@@ -1,6 +1,6 @@
 .PlayerView {
     position: absolute;
-    bottom: 150px;
+    bottom: 10px;
     left: 150px;
 }
 
@@ -15,7 +15,7 @@
   }
   
   .audio-player {
-    background: #c1b6bc;
+    background:  rgba(36, 36, 36, 0.712);
   }
   
   .inner {
@@ -26,7 +26,7 @@
   
   /* audio info */
   .audio-info {
-    display: flex;
+    /* display: flex; */
     gap: 20px;
   }
   
@@ -41,7 +41,6 @@
     margin-bottom: 0;
     padding: 2px;
     line-height: 37px;
-    background-color: rgba(0,0,0,.8);
   }
   
   /* audio image */
@@ -53,8 +52,8 @@
   }
   
   .audio-image {
-    width: 300px;
-    height: 300px;
+    width: 100px;
+    height: 100px;
     background: #1e1e1e; 
   }
   

@@ -4,8 +4,6 @@ import { useState, useEffect, useRef, useCallback } from 'react';
 import {
   IoPlayBackSharp,
   IoPlayForwardSharp,
-  IoPlaySkipBackSharp,
-  IoPlaySkipForwardSharp,
   IoPlaySharp,
   IoPauseSharp,
 } from 'react-icons/io5';
@@ -16,7 +14,7 @@ import {
     IoMdVolumeLow,
 } from 'react-icons/io';
 
-export default function ControlsPlayer({ audioRef, progressBarRef, duration, setTimeProgress, tracks, trackIndex, setTrackIndex, setCurrentTrack }) {
+export default function ControlsPlayer({ audioRef, progressBarRef, duration, setTimeProgress }) {
     const [ isPlaying, setIsPlaying ] = useState(false);
     const [ volume, setVolume ] = useState(60);
     const [ muteVolume, setMuteVolume ] = useState(false);
@@ -32,31 +30,10 @@ export default function ControlsPlayer({ audioRef, progressBarRef, duration, set
         audioRef.current.currentTime -= 15;
     };
 
-    const handlePrevious = () => {
-        if (trackIndex === 0) {
-            let lastTrackIndex = tracks.length - 1;
-            setTrackIndex(lastTrackIndex);
-            setCurrentTrack(tracks[lastTrackIndex]);
-          } else {
-            setTrackIndex((prev) => prev - 1);
-            setCurrentTrack(tracks[trackIndex - 1]);
-          }
-    };
-
-    const handleNext = () => {
-        if (trackIndex >= tracks.length - 1) {
-            setTrackIndex(0);
-            setCurrentTrack(tracks[0]);
-          } else {
-            setTrackIndex((prev) => prev + 1);
-            setCurrentTrack(tracks[trackIndex + 1]);
-          }
-    };
-
     const playAnimationRef = useRef();
 
     const repeat = useCallback (() => {
-        const currentTime = audioRef.current.currentTime;
+        let currentTime = audioRef.current.currentTime
         setTimeProgress(currentTime);
         progressBarRef.current.value = currentTime;
         progressBarRef.current.style.setProperty(
@@ -92,9 +69,6 @@ export default function ControlsPlayer({ audioRef, progressBarRef, duration, set
     return (
         <div className='controls-wrapper'>
             <div className='controls'>
-                <button onClick={handlePrevious}>
-                    <IoPlaySkipBackSharp />
-                </button>
 
                 <button onClick={skipBackward}>
                     <IoPlayBackSharp />
@@ -106,10 +80,6 @@ export default function ControlsPlayer({ audioRef, progressBarRef, duration, set
                 
                 <button onClick={skipForward}>
                     <IoPlayForwardSharp />
-                </button>
-
-                <button onClick={handleNext}>
-                    <IoPlaySkipForwardSharp />
                 </button>
 
                 <div className="volume">

@@ -32,6 +32,7 @@ export default function Sidebar({ closeSideBar }) {
                     <Link to="/account/downloads" onClick={closeSideBar}><h5>Downloads</h5></Link>
                     <Link to="/account/favorites" onClick={closeSideBar}><h5>Favorites</h5></Link>
                     <Link to="/account/my-catalog" onClick={closeSideBar}><h5>My catalog</h5></Link>
+                    <Link to={`/profile/${currentUser.username}/beats`} onClick={closeSideBar}><h5>Profile</h5></Link>
                     <Link onClick={userLogout}><span>Logout</span></Link> 
                     </>
                 }

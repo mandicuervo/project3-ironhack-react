@@ -1,11 +1,19 @@
 import './PlayerView.css'
 import AudioPlayer from "../../components/AudioPlayer/AudioPlayer";
-
+import { useContext } from 'react';
+import MusicContext from '../../contexts/MusicContext';
 
 export default function PlayerView() {
+    const { currentMusic } = useContext(MusicContext);
+
     return(
-        <div className="PlayerView">
-            <AudioPlayer />
-        </div>
+        <>
+        {
+            currentMusic && 
+            <div className="PlayerView">
+                <AudioPlayer />
+            </div>
+        }
+        </>
     )
 }

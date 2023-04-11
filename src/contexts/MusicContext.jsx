@@ -1,11 +1,44 @@
-import { createContext } from "react";
+import { createContext, useState, useMemo, useEffect } from "react";
+import { getOneBeat } from "../services/BeatsService";
 
-export const MusicContext = createContext();
+const MusicContext = createContext()
+export default MusicContext;
 
-// const MusicPLayerContext = (props) => {
-//   return (
-//     <MusicContext.Provider value ={musicState}>
-//       {props.children}
-//     </MusicContext.Provider>
-//   )
-// }
+export const MusicProvider = ({ children }) => {
+    const [idMusic, setIdMusic] = useState(null);
+    const [currentMusic, setCurrentMusic] = useState(null);
+
+    useEffect(() => {
+        if(idMusic) {
+            getOneBeat(idMusic)
+            .then((res) => {
+                setCurrentMusic(res)
+            }) 
+            .catch(err => console.log(err))
+        }
+    }, [idMusic])
+
+    const changeMusic = (id) => {
+        setIdMusic(id)
+    }
+
+    const stopMusic = () => {
+        setCurrentMusic(null)
+        setIdMusic(null)
+    }
+    
+    const value = useMemo(() => {
+        return {
+        currentMusic, 
+        idMusic,
+        changeMusic,
+        stopMusic
+        }
+    }, [currentMusic, idMusic, changeMusic, stopMusic])
+
+    return (
+        <MusicContext.Provider value={value}>
+            {children}
+        </MusicContext.Provider>
+    )
+}

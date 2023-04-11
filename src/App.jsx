@@ -13,6 +13,7 @@ import MyAccount from './views/MyAccount/MyAccount'
 import { Navigate } from 'react-router-dom'
 import Profile from './views/Profile/Profile'
 import PlayerView from './views/PlayerView/PlayerView'
+import LoadingScreen from './views/LoadingScreen/LoadingScreen'
 
 function App() {
   return (
@@ -23,7 +24,10 @@ function App() {
           <Route path="/" element={ <HomePage /> } />
           <Route path="login" element={<Login />} />
           <Route path="register" element={<Register/>} />
-          <Route path="profile/:username" element={<Profile />} />
+          <Route path="profile/:username/:component" element={<Profile />} />
+          {/* AUTH */}
+          <Route path="/validation" element={<LoadingScreen />} />
+          <Route path="/activate/:token" element={<LoadingScreen />} />
 
           <Route path="feed" element={
               <ProtectedRoute>

@@ -6,6 +6,7 @@ import AuthContext from '../../contexts/AuthContext';
 import { login as loginService } from '../../services/AuthService'
 import { loginSchema } from '../../schemas/loginSchema';
 import { useLocation } from 'react-router-dom';
+import googleIcon from '../../assets/google-icon.png';
 
 const initialValues = {
     email: '',
@@ -39,6 +40,10 @@ export default function Login() {
         }
     });
     
+    const handleOnClick = () => {
+        window.location.assign(`${import.meta.env.VITE_SERVER_URL}/auth/google`);
+    };
+
     //useLocation tras el email de register
     const { state } = useLocation();
     if(state) {
@@ -82,6 +87,10 @@ export default function Login() {
                     }
                 </button>
             </form>
+            <div className="google-button" onClick={handleOnClick}>
+              <img className="google-icon" src={googleIcon} alt="google icon" />
+              <p>Login with Google</p>
+            </div>
         </div>
     )
 }

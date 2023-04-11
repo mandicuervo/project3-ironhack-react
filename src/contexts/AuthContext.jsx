@@ -22,11 +22,11 @@ export const AuthProvider = ({ children }) => {
   }, [])
 
   const login = useCallback((token) => {
+    // Lo guaaardo
+    setAccessToken(token);
     const navigateToFeed = () => {
       navigate('/feed')
     }
-    // Lo guaaardo
-    setAccessToken(token);
     getCurrentUser(navigateToFeed)
 
   }, [getCurrentUser])

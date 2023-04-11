@@ -4,6 +4,7 @@ import FormControl from '../../components/FormControl/FormControl'
 import Input from '../../components/Input/Input'
 import { registerSchema } from "../../schemas/registerSchema"
 import { registerService } from "../../services/AuthService"
+import googleIcon from '../../assets/google-icon.png';
 
 const initialValues = {
     name: '',
@@ -43,6 +44,10 @@ export default function Register() {
             })
         }
     });
+
+    const handleOnClick = () => {
+        window.location.assign(`${VITE_SERVER_URL}/auth/google`);
+      }
 
     return(
         <div className="Register">
@@ -102,6 +107,10 @@ export default function Register() {
                     }
                 </button>
             </form>
+            <div className="google-button" onClick={handleOnClick}>
+                    <img className='google-icon' src={googleIcon} alt="google icon" />
+                    <p>Register with Google</p>
+            </div>
         </div>
     )
 }

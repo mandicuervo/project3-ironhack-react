@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 import About from '../../components/About/About';
 import Beats from '../../components/Beats/Beats';
 import Comments from '../../components/Comments/Comments';
@@ -9,16 +9,17 @@ import './Profile.css'
 export default function Profile() {
     const [componentToShow, setComponentToShow] = useState('beats')
     const navigate = useNavigate();
+    const { username, component } = useParams();
 
     useEffect(() => {
-        if (location.pathname === '/profile/beats') {
+        if (component === 'beats') {
             setComponentToShow('beats')
-        } else if(location.pathname === '/profile/comments') {
+        } else if(component === 'comments') {
             setComponentToShow('comments')
-        } else if(location.pathname === '/profile/about') {
+        } else if(component === 'about') {
             setComponentToShow('about')
         } else {
-            navigate('profile/beats')
+            navigate('beats')
         }
     })
     
@@ -29,9 +30,9 @@ export default function Profile() {
             </div>
 
             <div className='links-profile'>
-                <Link to='/profile/beats'>Beats</Link>
-                <Link to='/profile/comments'>Comments</Link>
-                <Link to='/profile/about'>About</Link>
+                <Link to={`/profile/${username}/beats`}>Beats</Link>
+                <Link to={`/profile/${username}/comments`}>Comments</Link>
+                <Link to={`/profile/${username}/about`}>About</Link>
                 {
                     componentToShow === 'beats' && <Beats />
                 }

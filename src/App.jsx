@@ -14,12 +14,15 @@ import { Navigate } from 'react-router-dom'
 import Profile from './views/Profile/Profile'
 import PlayerView from './views/PlayerView/PlayerView'
 import LoadingScreen from './views/LoadingScreen/LoadingScreen'
+import Cart from './components/Cart/Cart'
+import Modal from './components/Cart/Modal/Modal'
 
 function App() {
   return (
     <div className="App">
       <Navbar />
       <PlayerView />
+      <Modal />
       <Routes>
           <Route path="/" element={ <HomePage /> } />
           <Route path="login" element={<Login />} />
@@ -38,6 +41,12 @@ function App() {
           <Route path="account/:component" element={
             <ProtectedRoute>
                 <MyAccount />
+            </ProtectedRoute>
+          } />
+
+          <Route path="/cart" element={ 
+            <ProtectedRoute>
+                <Cart />
             </ProtectedRoute>
           } />
 

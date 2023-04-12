@@ -3,8 +3,9 @@ import MusicContext from '../../contexts/MusicContext'
 import AuthContext from '../../contexts/AuthContext'
 import './ListBeats.css'
 import { deleteBeat, getBeatsFromUser } from '../../services/BeatsService';
+import OpenModalButton from '../Cart/OpenModalButton/OpenModalButton';
 
-export default function ListBeats() {
+export default function ListBeats({handleEdit}) {
     const [beatsList, setBeatsList] = useState([])
     const { changeMusic } = useContext(MusicContext);
     const { currentUser } = useContext(AuthContext);
@@ -38,14 +39,20 @@ export default function ListBeats() {
                     <div className='list' key={beat._id}>
                         <div>
                             <h5>title:{beat.name}</h5>
-                            <h5>${beat.price}</h5>
                             <h6>bpm:{beat.bpm}</h6>
                         </div>
                         <div>
                             <button onClick={ ()=>handleOnPlay(beat._id) }>PLAY</button>
                             {
                                 currentUser.id === beat.owner && 
+                                <>
                                 <button onClick={ ()=>handleDelete(beat._id) }>DELETE</button>
+                                <button onClick={ ()=>handleEdit(beat._id) }>EDIT</button>
+                                </>
+                            }
+                            {
+                                currentUser &&
+                                <OpenModalButton id={beat._id} />
                             }
                         </div>
                     </div>

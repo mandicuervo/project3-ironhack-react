@@ -1,27 +1,54 @@
 import { useContext, useEffect, useState} from "react";
 import AuthContext from "../../contexts/AuthContext";
-import { postBeat } from "../../services/BeatsService";
+import { editBeat, getOneBeat, postBeat } from "../../services/BeatsService";
 import ListBeats from "../ListBeats/ListBeats";
+import Tags from "../Tags/Tags";
 
 const keysOptions =  ['None', 'Cm', 'Dm', 'Em', 'Fm', 'Am', 'Gm', 'F#M', 'Bm', 'D#M', 'A#M', 'EbM', 'AbM', 'BbM', 'C#M', 'DbM', 'GbM', 'CbM', 'G#M', 'C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B']
-const genreOptions = ['Hip-Hop', 'Trap', 'RnB', 'Pop', 'Electronic', 'Reggae', 'Underground', 'Old School', 'West Coast', 'East Cost', 'Drill', 'Reaggaeton', 'Rock', 'Soul', 'Club', 'New Soul', 'Pop Hip-Hop', 'Afro Beat', 'Gangsta', 'Dirty South', 'Dance Hall', 'Orchestral', 'World', 'Pop-Rap', 'Hyperpop', 'Alternative', 'Alternative RnB', 'Grime', 'Alternative Hip-Hop', 'House', 'Pop-Electronic', 'Indie Rock', 'Downtempo', 'Pop-Rock', 'Lo-Fi', 'Country', 'Hip-Hop Soul', 'Beats', 'Ambient', 'Indie', 'Dance', 'Funk', 'Funk Brazil', 'Boom Bap', 'Class Soul', 'Break Beat', 'K-Pop', 'Crunk', 'Instrumental Hip-Hop', 'Underground Hip-Hop', 'Drum and Bass', 'Rage Beats', 'Latin', 'Chill', 'Alternative Rock', 'Afro', 'Afro Pop', 'Freestyle Rap', 'Gangsta Rap', 'Uk Grime', 'Trip Hop', 'Old School Hip-Hop', 'Roots', 'Emo Hip-Hop', 'Lo-Fi Hip-Hop', 'Experimental Hip-Hop', 'Two Step', 'Pop Country', 'Cloud Rap', 'Dub', 'Contemporany Rb', 'Dubstep', 'Jersey Club', 'Smooth Rnb', 'California Sound', 'Synthwave', 'Jazz', 'Conscious Hip-Hop', 'Classical', 'Hardcore Hip-Hop', 'Folk', 'Classical Rock', 'Country Rock', 'Tropical House', 'Edm', 'Chillwave', 'Dance RnB', 'Pop 80s', 'Industrial', 'Metal', 'Latin Trap', 'G funk', 'Latin Pop', 'Jazz Rap', 'Electro Pop', 'Trance', 'Mumble Rap', 'Jazz Fusion', 'Samba', 'Bossa Nova', 'Cumbia']
-const moodOptions = ['Bouncy', 'Dark', 'Energetic', 'Confident', 'Calm', 'Sad', 'Soulful', 'Inspiring', 'Angry', 'Relaxes', 'Quirky', 'Mellow', 'Accomplished', 'Crazy', 'Happy', 'Determoned', 'Powerful', 'Epic', 'Intense', 'Loved', 'Dirty', 'Depressed', 'Lonely', 'Evil', 'Hyper', 'Peaceful', 'Anxious', 'Flirty', 'Gloomy', 'Rebellious', 'Grateful', 'Adored', 'Eccentric', 'Neutral', 'Romantic', 'Crunk', 'Enraged', 'Annoyed', 'Lazy', 'Disappointed', 'Exciting', 'Tense', 'Giddy', 'Scared', 'Dramatic', 'Frantic', 'Silly', 'Majestic']
-const instrumentOptions = ['Percussion', 'Piano', 'Bass Guitar', 'Electric Guitar', 'Acoustic Guitar', 'Strings', 'Violin', 'Brass', 'Flute', 'Cymbals', 'Organ', 'Trumpet', 'Viola', 'Cello', 'Saxophone', 'Double Bass', 'Recorder', 'Banjo', 'Tambourine', 'Triangle', 'French HOrn', 'Ukulele', 'Trombone', 'Sitar', 'Harmonica', 'Piccolo', 'Harpsichord', 'Bassoon', 'Maracas', 'Clarinet', 'Mnadolin', 'Tuba', 'Oboe', 'Lute', 'Castanets', 'Bugle', 'Gong']
+const genreOptions = ['None', 'Hip-Hop', 'Trap', 'RnB', 'Pop', 'Electronic', 'Reggae', 'Underground', 'Old School', 'West Coast', 'East Cost', 'Drill', 'Reaggaeton', 'Rock', 'Soul', 'Club', 'New Soul', 'Pop Hip-Hop', 'Afro Beat', 'Gangsta', 'Dirty South', 'Dance Hall', 'Orchestral', 'World', 'Pop-Rap', 'Hyperpop', 'Alternative', 'Alternative RnB', 'Grime', 'Alternative Hip-Hop', 'House', 'Pop-Electronic', 'Indie Rock', 'Downtempo', 'Pop-Rock', 'Lo-Fi', 'Country', 'Hip-Hop Soul', 'Beats', 'Ambient', 'Indie', 'Dance', 'Funk', 'Funk Brazil', 'Boom Bap', 'Class Soul', 'Break Beat', 'K-Pop', 'Crunk', 'Instrumental Hip-Hop', 'Underground Hip-Hop', 'Drum and Bass', 'Rage Beats', 'Latin', 'Chill', 'Alternative Rock', 'Afro', 'Afro Pop', 'Freestyle Rap', 'Gangsta Rap', 'Uk Grime', 'Trip Hop', 'Old School Hip-Hop', 'Roots', 'Emo Hip-Hop', 'Lo-Fi Hip-Hop', 'Experimental Hip-Hop', 'Two Step', 'Pop Country', 'Cloud Rap', 'Dub', 'Contemporany Rb', 'Dubstep', 'Jersey Club', 'Smooth Rnb', 'California Sound', 'Synthwave', 'Jazz', 'Conscious Hip-Hop', 'Classical', 'Hardcore Hip-Hop', 'Folk', 'Classical Rock', 'Country Rock', 'Tropical House', 'Edm', 'Chillwave', 'Dance RnB', 'Pop 80s', 'Industrial', 'Metal', 'Latin Trap', 'G funk', 'Latin Pop', 'Jazz Rap', 'Electro Pop', 'Trance', 'Mumble Rap', 'Jazz Fusion', 'Samba', 'Bossa Nova', 'Cumbia']
+const moodOptions = ['None', 'Bouncy', 'Dark', 'Energetic', 'Confident', 'Calm', 'Sad', 'Soulful', 'Inspiring', 'Angry', 'Relaxes', 'Quirky', 'Mellow', 'Accomplished', 'Crazy', 'Happy', 'Determoned', 'Powerful', 'Epic', 'Intense', 'Loved', 'Dirty', 'Depressed', 'Lonely', 'Evil', 'Hyper', 'Peaceful', 'Anxious', 'Flirty', 'Gloomy', 'Rebellious', 'Grateful', 'Adored', 'Eccentric', 'Neutral', 'Romantic', 'Crunk', 'Enraged', 'Annoyed', 'Lazy', 'Disappointed', 'Exciting', 'Tense', 'Giddy', 'Scared', 'Dramatic', 'Frantic', 'Silly', 'Majestic']
+const instrumentOptions = ['None', 'Percussion', 'Piano', 'Bass Guitar', 'Electric Guitar', 'Acoustic Guitar', 'Strings', 'Violin', 'Brass', 'Flute', 'Cymbals', 'Organ', 'Trumpet', 'Viola', 'Cello', 'Saxophone', 'Double Bass', 'Recorder', 'Banjo', 'Tambourine', 'Triangle', 'French HOrn', 'Ukulele', 'Trombone', 'Sitar', 'Harmonica', 'Piccolo', 'Harpsichord', 'Bassoon', 'Maracas', 'Clarinet', 'Mnadolin', 'Tuba', 'Oboe', 'Lute', 'Castanets', 'Bugle', 'Gong']
+const initialValues = {
+    name: '',
+    key: 'None',
+    scale: 'None',
+    bpm: '',
+    genre: 'None',
+    price: '',
+    instrument: 'None',
+    mood: 'None'
+};
 
 export default function MyCatalog() {
-    const [beatsList, setBeatsList] = useState([]);
+    const [error, setError] = useState(false);
     const [audio, setAudio] = useState([]);
-    //const [image, setImage] = useState([]);
-    const [infoBeat, setInfoBeat] = useState({
-        name: '',
-        key: '',
-        scale: '',
-        bpm: '',
-        genre: '',
-        price: '',
-        instrument: ''
-    })
+    const [image, setImage] = useState([]);
+    const [isEdit, setIsEdit] = useState(false);
+    const [idToEdit, setIdToEdit] = useState(null);
+    const [infoBeat, setInfoBeat] = useState(initialValues)
+    
     const { currentUser } = useContext(AuthContext);
+
+    const handleEdit = (id) => {
+        setIsEdit(true)
+        setIdToEdit(id)
+
+        getOneBeat(id)
+        .then(res => {
+            setInfoBeat({
+                name: res.name,
+                key: res.key,
+                scale: res.scale,
+                bpm: res.bpm,
+                genre: res.genre,
+                price: res.price,
+                instrument: res.instrument,
+                mood: res.mood
+            })
+
+        })
+        .catch(err => console.log(err))
+    }
 
     const handleOnChange = (e) => {
         const { name, value, type, files } = e.target;
@@ -32,6 +59,7 @@ export default function MyCatalog() {
             if(name === 'image') {
                 setImage(files)
             } else {
+                setError(false)
                 setAudio(files);
             }
         }
@@ -40,51 +68,78 @@ export default function MyCatalog() {
     const handleOnSubmit = (e) => {
         e.preventDefault()
         let formData = new FormData();
-
-        formData.append("_id", currentUser["_id"]);
-    
+        
         for (let data in infoBeat) {
             formData.append(data, infoBeat[data]);
         }
-    
-        for (let beat of audio) {
-            formData.append("beat", beat);
+        
+        if(!isEdit) {
+            formData.append("_id", currentUser["_id"]);
+
+            if(audio.length > 0){
+                for (let beat of audio) {
+                    formData.append("beat", beat);
+                }
+            } else {
+             setError(true);
+             return;
+            }
+
+            postBeat(formData)
+            .then(response => {
+                getBeatsList()
+            })
+            .catch(err => console.log(err))
+
+        } else {
+            if(image.length > 0) {
+                for (let img of image) {
+                    formData.append("image", img);
+                }
+            }
+
+            editBeat(idToEdit, formData)
+            .then((res) => {
+                setIsEdit(false);
+                setInfoBeat(initialValues)
+                setIdToEdit(null)
+            })
+            .catch(err => console.log(err))
         }
 
-        // for (let img of image) {
-        //     formData.append("image", img);
-        // }
-        
-        postBeat(formData)
-        .then(response => {
-            getBeatsList()
-        })
-        .catch(err => console.log(err))
+
     }
+
 
     return(
         <div className="MyCatalog">
-            <h1>New Beat</h1>
+            <h1>{!isEdit ? 'New beat' : 'Edit beat'}</h1>
             <form onSubmit={ handleOnSubmit }>
-                <div className="upload-beat">
-                    <label><strong>Upload your beat here</strong></label>
-                    <input name= 'beat' type='file' onChange={ handleOnChange }/>
-                </div>
-
-                {/* <div className="img-beat">
-                    <label>Image</label>
-                    <input name= 'image' type='file' onChange={handleOnChange} />
-                </div> */}
+                {
+                    !isEdit ?
+                    <div className="upload-beat">
+                        <label><strong>Upload your beat here</strong></label>
+                        <input name= 'beat' type='file' onChange={ handleOnChange }/>
+                        {
+                            error && <p>This field is required!</p>
+                        }
+                    </div>
+                    :
+                    <div className="upload-image">
+                        <label><strong>Choose an image for your beat</strong></label>
+                        <input name= 'image' type='file' onChange={ handleOnChange }/>
+                    </div>
+                }
             
                 <div className="description-beat">
                     <label>Name:</label>
-                    <input name= 'name' type='text' onChange={ handleOnChange } />
+                    <input name= 'name' type='text' value={infoBeat.name} onChange={ handleOnChange } required/>
 
                     <label>BPM:</label>
-                    <input name= 'bpm' type='number' onChange={ handleOnChange } />
+                    <input name= 'bpm' type='number' value={infoBeat.bpm} onChange={ handleOnChange } required/>
                     
                     <label>Key:</label>
-                    <select name= 'key' type='text' onChange={ handleOnChange }>
+                    <select name= 'key' type='text' value={infoBeat.key} onChange={ handleOnChange }>
                         {
                             keysOptions.map((option) => (
                                 <option value={option} key={option}>{option}</option>
@@ -93,13 +148,14 @@ export default function MyCatalog() {
                     </select>
 
                     <label>Scale:</label>
-                    <select name= 'scale' type='text' onChange={ handleOnChange }>
-                        <option value='minor'>minor</option>
-                        <option value='major'>major</option>
+                    <select name= 'scale' type='text' value={infoBeat.scale} onChange={ handleOnChange } required>
+                        <option value='None'>None</option>
+                        <option value='Minor'>Minor</option>
+                        <option value='Major'>Major</option>
                     </select>
 
                     <label>Genre:</label>
-                    <select name= 'genre' type='text' onChange={ handleOnChange }>
+                    <select name= 'genre' type='text' value={infoBeat.genre} onChange={ handleOnChange } required>
                         {
                             genreOptions.map((genre) => (
                                 <option value={genre} key={genre}>{genre}</option>
@@ -108,7 +164,7 @@ export default function MyCatalog() {
                     </select>
 
                     <label>Mood:</label>
-                    <select name='mood' type='text' onChange={ handleOnChange }>
+                    <select name='mood' type='text' value={infoBeat.mood} onChange={ handleOnChange } required>
                         {
                             moodOptions.map((mood) => (
                                 <option value={mood} key={mood}>{mood}</option>
@@ -117,22 +173,30 @@ export default function MyCatalog() {
                     </select>
 
                     <label>Instrument:</label>
-                    <select name='instrument' type='text' onChange={ handleOnChange }>
+                    <select name='instrument' type='text' value={infoBeat.instrument} onChange={ handleOnChange } required>
                         {
                             instrumentOptions.map((instrument) => (
                                 <option value={instrument} key={instrument}>{instrument}</option>
                             ))
                         }
                     </select>
+{/* 
+                    <label>Tags:</label>
+                    <input></input> */}
 
                     <label>Price:</label>
-                    <input name= 'price' type='number' onChange={ handleOnChange } />
+                    <input name= 'price' type='number' value={infoBeat.price} step='0.01' placeholder='50.00' onChange={ handleOnChange } required/>
                 </div>
+
+                Tags:<Tags/>
+
                 <button type="submit">Submit</button>
             </form>
             
             <div className="list-beats">
-                <ListBeats />
+                <ListBeats
+                    handleEdit={handleEdit}
+                />
             </div>
         </div>
     )

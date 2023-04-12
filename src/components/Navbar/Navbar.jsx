@@ -4,6 +4,7 @@ import AuthContext  from '../../contexts/AuthContext'
 import { useContext, useEffect, useState } from 'react';
 import Sidebar from '../Sidebar/Sidebar';
 import SearchBar from '../SearchBar/SearchBar';
+import Cart from '../Cart/Cart';
 
 export default function Navbar() {
     const [bgImage, setBgImage] = useState('https://res.cloudinary.com/dgnace8dp/image/upload/v1676728201/profile-default_zk16xw.jpg')
@@ -41,7 +42,8 @@ export default function Navbar() {
                 </div>
                 <div className='links-navbar'>
                     { !currentUser && <Link to="/login">Login</Link> }
-                    { !currentUser && <Link to="/register">Register</Link> }  
+                    { !currentUser && <Link to="/register">Register</Link> } 
+                    { currentUser && <Link to="/cart"><Cart></Cart></Link>}
                     { currentUser && <div className="image-profile" style={styles} onClick={openSidebar}></div> }
                 </div>
             </div>

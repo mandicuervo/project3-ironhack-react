@@ -9,7 +9,7 @@ export const getBeatsFromUser = (userId) => authenticatedHttp.get(`/beats/${user
 
 export const getOneBeat = (beatId) => authenticatedHttp.get(`/beat/${beatId}`)
 
-// export const editBeat = (beatInfo) => authenticatedHttp.post(`/beat/edit/${beatInfo}`)
+export const editBeat = (beatId, beatInfo) => authenticatedHttp.post(`/beat/edit/${beatId}`, beatInfo)
 
 export const deleteBeat = (id) => authenticatedHttp.delete(`/beats/delete/${id}`)
 

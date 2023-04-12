@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState} from "react";
 import AuthContext from "../../contexts/AuthContext";
-import { getBeatsFromUser, postBeat } from "../../services/BeatsService";
+import { postBeat } from "../../services/BeatsService";
 import ListBeats from "../ListBeats/ListBeats";
 
 const keysOptions =  ['None', 'Cm', 'Dm', 'Em', 'Fm', 'Am', 'Gm', 'F#M', 'Bm', 'D#M', 'A#M', 'EbM', 'AbM', 'BbM', 'C#M', 'DbM', 'GbM', 'CbM', 'G#M', 'C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B']
@@ -22,18 +22,6 @@ export default function MyCatalog() {
         instrument: ''
     })
     const { currentUser } = useContext(AuthContext);
-
-    const getBeatsList = () => {
-        getBeatsFromUser(currentUser.id)
-        .then(response => setBeatsList(response))
-        .catch(err => console.log(err))
-    }
-
-    useEffect(() => {
-        if(currentUser) {
-            getBeatsList()
-        }
-    }, [currentUser])
 
     const handleOnChange = (e) => {
         const { name, value, type, files } = e.target;
@@ -144,7 +132,7 @@ export default function MyCatalog() {
             </form>
             
             <div className="list-beats">
-                <ListBeats list={beatsList} />
+                <ListBeats />
             </div>
         </div>
     )

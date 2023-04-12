@@ -46,7 +46,7 @@ export default function Register() {
     });
 
     const handleOnClick = () => {
-        window.location.assign(`${VITE_SERVER_URL}/auth/google`);
+        window.location.assign(`${import.meta.env.VITE_SERVER_URL}/auth/google`);
       }
 
     return(

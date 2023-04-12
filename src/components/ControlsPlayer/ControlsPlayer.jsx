@@ -33,14 +33,18 @@ export default function ControlsPlayer({ audioRef, progressBarRef, duration, set
     const playAnimationRef = useRef();
 
     const repeat = useCallback (() => {
-        let currentTime = audioRef.current.currentTime
+        let currentTime;
+        if(audioRef && audioRef.current) {
+            currentTime = audioRef.current.currentTime
+        } 
         setTimeProgress(currentTime);
-        progressBarRef.current.value = currentTime;
-        progressBarRef.current.style.setProperty(
-            '--range-progress',
-            `${(progressBarRef.current.value / duration) * 100}%`
-        );
-
+        if(progressBarRef && progressBarRef.current) {
+            progressBarRef.current.value = currentTime;
+            progressBarRef.current.style.setProperty(
+                '--range-progress',
+                `${(progressBarRef.current.value / duration) * 100}%`
+            );
+        }
         playAnimationRef.current = requestAnimationFrame(repeat);
     }, [audioRef, duration, progressBarRef, setTimeProgress]);
 

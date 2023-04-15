@@ -1,3 +1,33 @@
 .bx {
     color: whitesmoke;
 }
+
+.bxs-cart:hover {
+    cursor: pointer;
+}
+
+.cart-list {
+    padding: 15px;
+    width: 280px;
+    background-color: var(--transparent-black);
+    position: absolute;
+    top: 60px;
+    z-index: 1;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    right: 28px;
+}
+
+.checkout-btn {
+    background-color: #4ac24a;
+    padding: 8px;
+    border-radius: 5px;
+    font-weight: 600;
+    text-align: center;
+    margin-top: 15px;
+}
+
+.checkout-btn:hover {
+    background-color: #3ea73e;
+    cursor: pointer;
+}

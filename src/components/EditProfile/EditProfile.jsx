@@ -7,7 +7,8 @@ export default function EditProfile() {
     const [image, setImage] = useState([]);
     const [user, setUser] = useState({
         name: "",
-        bio: ""
+        bio: "",
+        username: ""
     })
     const { currentUser } = useContext(AuthContext);
     const navigate = useNavigate();
@@ -16,7 +17,8 @@ export default function EditProfile() {
         if(currentUser) {
             setUser({
                 name: currentUser.name,
-                bio: currentUser.bio
+                bio: currentUser.bio,
+                username: currentUser.username
             })
         }
     }, [currentUser])
@@ -56,14 +58,17 @@ export default function EditProfile() {
         <div className="EditProfile">
             <form onSubmit={ handleOnSubmit }>
                 <div className="form-edit-profile">
-                    <label>Image</label>
+                    <label>Image:</label>
                     <input name= 'image' type='file' onChange={handleOnChange} />
                 
-                    <label>Name</label>
+                    <label>Name:</label>
                     <input name= 'name' value={user.name} type='text' onChange={handleOnChange} />
 
-                    <label>Bio</label>
+                    <label>Bio:</label>
                     <input name= 'bio' value={user.bio} type='text' onChange={handleOnChange} />
+                
+                    <label>Username:</label>
+                    <input name='username' value={user.username} type='text' onChange={handleOnChange} />
                 </div>
                 <button type="submit">Submit</button>
             </form>

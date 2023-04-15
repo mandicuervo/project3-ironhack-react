@@ -1,15 +1,29 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useContext } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import About from '../../components/About/About';
 import Beats from '../../components/Beats/Beats';
 import Comments from '../../components/Comments/Comments';
+import AuthContext from '../../contexts/AuthContext';
 import './Profile.css'
 
 
 export default function Profile() {
     const [componentToShow, setComponentToShow] = useState('beats')
-    const navigate = useNavigate();
     const { username, component } = useParams();
+    const [bgImage, setBgImage] = useState('https://res.cloudinary.com/dgnace8dp/image/upload/v1676728201/profile-default_zk16xw.jpg')
+    const {currentUser} = useContext(AuthContext);
+    const navigate = useNavigate();
+
+
+    const styles = {
+        backgroundImage: `url(${bgImage})`
+    }
+
+    useEffect(() => {
+        if(currentUser) {
+            setBgImage(currentUser.image)
+        }
+    }, [currentUser])
 
     useEffect(() => {
         if (component === 'beats') {
@@ -26,13 +40,16 @@ export default function Profile() {
     return (
         <div className='MyProfile'>
             <div className='header-profile'>
-                <h1>Your Profile</h1>
+                <img className="image-profile img" style={styles}/>
+                
+                <h3>{currentUser?.username}</h3>
+                <h3>{currentUser?.email}</h3>
             </div>
 
             <div className='links-profile'>
-                <Link to={`/profile/${username}/beats`}>Beats</Link>
-                <Link to={`/profile/${username}/comments`}>Comments</Link>
-                <Link to={`/profile/${username}/about`}>About</Link>
+                <Link to={`/profile/${username}/beats`}>BEATS</Link>
+                <Link to={`/profile/${username}/comments`}>COMMENTS</Link>
+                <Link to={`/profile/${username}/about`}>ABOUT</Link>
                 {
                     componentToShow === 'beats' && <Beats />
                 }

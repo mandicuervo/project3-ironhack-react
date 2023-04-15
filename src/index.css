@@ -1,5 +1,21 @@
 body {
-    margin: 0;
-    padding: 0;
-    overflow-x: hidden;
+  width: 100vw;
+  margin: 0;
+  font-family: 'Roboto Mono', monospace;
+  /* -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale; */
+  overflow-x: hidden;
 }
+  
+  /* *::-webkit-scrollbar {
+    width: 20px;
+  }
+  
+  *::-webkit-scrollbar-track {
+    background: var(--transparent-black);
+  }
+  
+  *::-webkit-scrollbar-thumb {
+    background-color: var(--secondary-color);
+    border-radius: 10px;
+  } */

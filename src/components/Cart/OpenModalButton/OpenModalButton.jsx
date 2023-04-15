@@ -1,3 +1,4 @@
+import './OpenModalButton.css'
 import { useContext, useEffect, useState } from "react";
 import CartContext from "../../../contexts/CartContext";
 import { getOneBeat } from "../../../services/BeatsService";

@@ -13,5 +13,6 @@ export const getAccessToken = () => {
 
 export const logout = () => {
     localStorage.removeItem(JWT_TOKEN_kEY)
+    localStorage.removeItem('cart')
     window.location.assign('/login')
 }

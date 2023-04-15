@@ -25,16 +25,20 @@ export default function MyAccount() {
 
     return(
         <div className='MyAccount'>
-            <Link to='/account/edit'>Edit Profile</Link>
-            <Link to='/account/downloads'>Downloads</Link>
-            <Link to='/account/favorites'>Favorites</Link>
-            <Link to='/account/my-catalog'>My Beats</Link>
-            {
-                componentToShow === 'edit' && <EditProfile />
-            }
-            {
-                componentToShow === 'my-catalog' && <MyCatalog />
-            }
+            <div className='links-account'>
+                <Link to='/account/edit'>Edit Profile</Link>
+                <Link to='/account/downloads'>Downloads</Link>
+                <Link to='/account/favorites'>Favorites</Link>
+                <Link to='/account/my-catalog'>My Beats</Link>
+            </div>
+            <div className='components-account'>
+                {
+                    componentToShow === 'edit' && <EditProfile />
+                }
+                {
+                    componentToShow === 'my-catalog' && <MyCatalog />
+                }
+            </div>
         </div>
     )
 }

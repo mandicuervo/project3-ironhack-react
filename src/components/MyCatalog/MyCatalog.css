@@ -1,0 +1,17 @@
+.MyCatalog {
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(36, 36, 36);
+    color: whitesmoke;
+}
+
+.description-beat input {
+    width: max-content;
+    border-radius: 20px;
+    border: none;
+}
+
+.description-beat select {
+    border: none;
+    border-radius: 20px
+}

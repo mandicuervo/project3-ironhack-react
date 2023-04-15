@@ -1,7 +1,7 @@
 import './Tags.css'
 import { useState } from "react";
 
-export default function Tags() {
+export default function Tags({handleTags}) {
     const [input, setInput] = useState('');
     const [tags, setTags] = useState([]);
     const [isKeyReleased, setIsKeyReleased] = useState(false);
@@ -9,6 +9,7 @@ export default function Tags() {
     const onChange = (e) => {
         const { value } = e.target;
         setInput(value);
+        handleTags(tags);
     }
 
     const onKeyDown = (e) => {

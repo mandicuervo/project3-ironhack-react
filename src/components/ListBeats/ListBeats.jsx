@@ -5,7 +5,7 @@ import './ListBeats.css'
 import { deleteBeat, getBeatsFromUser } from '../../services/BeatsService';
 import OpenModalButton from '../Cart/OpenModalButton/OpenModalButton';
 
-export default function ListBeats({handleEdit}) {
+export default function ListBeats({handleEdit, reloadPage}) {
     const [beatsList, setBeatsList] = useState([])
     const { changeMusic } = useContext(MusicContext);
     const { currentUser } = useContext(AuthContext);
@@ -20,7 +20,7 @@ export default function ListBeats({handleEdit}) {
         if(currentUser) {
             getList()
         }
-    }, [currentUser])
+    }, [currentUser, reloadPage])
 
     const handleOnPlay = (id) => {
         changeMusic(id)
@@ -37,17 +37,19 @@ export default function ListBeats({handleEdit}) {
             {
                 beatsList && beatsList.length > 0 && beatsList.map((beat) => ( 
                     <div className='list' key={beat._id}>
+                        <img src={ beat.image } alt={ beat.name }/>
                         <div>
-                            <h5>title:{beat.name}</h5>
-                            <h6>bpm:{beat.bpm}</h6>
+                            <p>{beat.name}</p>
+                            <p>{beat.bpm}bpm</p>
+                            <p>{beat.owner}</p>
                         </div>
                         <div>
                             <button onClick={ ()=>handleOnPlay(beat._id) }>PLAY</button>
                             {
                                 currentUser.id === beat.owner && 
                                 <>
-                                <button onClick={ ()=>handleDelete(beat._id) }>DELETE</button>
                                 <button onClick={ ()=>handleEdit(beat._id) }>EDIT</button>
+                                <i className='bx bxs-trash' onClick={ ()=>handleDelete(beat._id) }></i>
                                 </>
                             }
                             {

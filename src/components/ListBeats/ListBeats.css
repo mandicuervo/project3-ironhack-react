@@ -1,0 +1,16 @@
+.ListBeats {
+    background-color: red;
+    color: whitesmoke;
+}
+
+.list img {
+    width: 80px;
+    height: 80px;
+    border-radius: 30px;
+}
+.list {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+}
+

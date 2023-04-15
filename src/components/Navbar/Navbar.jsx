@@ -1,15 +1,15 @@
 import './Navbar.css'
 import { Link } from 'react-router-dom'
 import AuthContext  from '../../contexts/AuthContext'
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect, useReducer, useState } from 'react';
 import Sidebar from '../Sidebar/Sidebar';
 import SearchBar from '../SearchBar/SearchBar';
 import Cart from '../Cart/Cart';
+import Notification from '../Notfication/Notification';
 
 export default function Navbar() {
     const [bgImage, setBgImage] = useState('https://res.cloudinary.com/dgnace8dp/image/upload/v1676728201/profile-default_zk16xw.jpg')
-    const [isSidearOpen, setIsSidebarOpen] = useState(false)
-
+    const [isSidearOpen, setIsSidebarOpen] = useState(false);
     const { currentUser } = useContext(AuthContext);
     
     const styles = {
@@ -35,15 +35,17 @@ export default function Navbar() {
         <div className="Navbar">
             <div className="navbar-container">
                 <div className='title-navbar'>
-                    <Link to="/feed"><h3>B E A T S</h3></Link>
+                    { !currentUser && <Link to="/"><h3>logo</h3></Link> }
+                    { currentUser && <Link to="/feed"><h3>logo</h3></Link>}
                 </div>
                 <div className='search-bar'>
-                    <SearchBar />
+                    { currentUser && <SearchBar />}
                 </div>
                 <div className='links-navbar'>
                     { !currentUser && <Link to="/login">Login</Link> }
                     { !currentUser && <Link to="/register">Register</Link> } 
-                    { currentUser && <Link to="/cart"><Cart></Cart></Link>}
+                    { currentUser && <Link to="/notification"><Notification /></Link>}
+                    { currentUser && <Cart />}
                     { currentUser && <div className="image-profile" style={styles} onClick={openSidebar}></div> }
                 </div>
             </div>

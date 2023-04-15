@@ -1,11 +1,8 @@
 import './App.css'
-import { useContext } from 'react'
 import { Route, Routes } from 'react-router-dom'
 import Navbar from './components/Navbar/Navbar'
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute"
 import Login from './views/Login/Login'
-import AuthContext from './contexts/AuthContext'
-import { useEffect } from 'react'
 import Feed from './views/Feed/Feed'
 import HomePage from './views/HomePage/HomePage'
 import Register from './views/Register/Register'
@@ -44,14 +41,14 @@ function App() {
             </ProtectedRoute>
           } />
 
-          <Route path="/cart" element={ 
+          <Route path="/checkout" element={ 
             <ProtectedRoute>
                 <Cart />
             </ProtectedRoute>
           } />
 
           <Route path="*" element={<Navigate to="/" replace />} />
-        </Routes>        
+        </Routes>
     </div>
   )
 }

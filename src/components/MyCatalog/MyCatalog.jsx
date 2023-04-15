@@ -1,8 +1,10 @@
+import './MyCatalog.css'
 import { useContext, useEffect, useState} from "react";
 import AuthContext from "../../contexts/AuthContext";
 import { editBeat, getOneBeat, postBeat } from "../../services/BeatsService";
 import ListBeats from "../ListBeats/ListBeats";
 import Tags from "../Tags/Tags";
+
 
 const keysOptions =  ['None', 'Cm', 'Dm', 'Em', 'Fm', 'Am', 'Gm', 'F#M', 'Bm', 'D#M', 'A#M', 'EbM', 'AbM', 'BbM', 'C#M', 'DbM', 'GbM', 'CbM', 'G#M', 'C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B']
 const genreOptions = ['None','Cinematic','Hip-Hop', 'Trap', 'RnB', 'Pop', 'Electronic', 'Reggae', 'Underground', 'Old School', 'West Coast', 'East Cost', 'Drill', 'Reaggaeton', 'Rock', 'Soul', 'Club', 'New Soul', 'Pop Hip-Hop', 'Afro Beat', 'Gangsta', 'Dirty South', 'Dance Hall', 'Orchestral', 'World', 'Pop-Rap', 'Hyperpop', 'Alternative', 'Alternative RnB', 'Grime', 'Alternative Hip-Hop', 'House', 'Pop-Electronic', 'Indie Rock', 'Downtempo', 'Pop-Rock', 'Lo-Fi', 'Country', 'Hip-Hop Soul', 'Beats', 'Ambient', 'Indie', 'Dance', 'Funk', 'Funk Brazil', 'Boom Bap', 'Class Soul', 'Break Beat', 'K-Pop', 'Crunk', 'Instrumental Hip-Hop', 'Underground Hip-Hop', 'Drum and Bass', 'Rage Beats', 'Latin', 'Chill', 'Alternative Rock', 'Afro', 'Afro Pop', 'Freestyle Rap', 'Gangsta Rap', 'Uk Grime', 'Trip Hop', 'Old School Hip-Hop', 'Roots', 'Emo Hip-Hop', 'Lo-Fi Hip-Hop', 'Experimental Hip-Hop', 'Two Step', 'Pop Country', 'Cloud Rap', 'Dub', 'Contemporany Rb', 'Dubstep', 'Jersey Club', 'Smooth Rnb', 'California Sound', 'Synthwave', 'Jazz', 'Conscious Hip-Hop', 'Classical', 'Hardcore Hip-Hop', 'Folk', 'Classical Rock', 'Country Rock', 'Tropical House', 'Edm', 'Chillwave', 'Dance RnB', 'Pop 80s', 'Industrial', 'Metal', 'Latin Trap', 'G funk', 'Latin Pop', 'Jazz Rap', 'Electro Pop', 'Trance', 'Mumble Rap', 'Jazz Fusion', 'Samba', 'Bossa Nova', 'Cumbia']
@@ -16,7 +18,8 @@ const initialValues = {
     genre: 'None',
     price: '',
     instrument: 'None',
-    mood: 'None'
+    mood: 'None',
+    tags: []
 };
 
 export default function MyCatalog() {
@@ -25,7 +28,8 @@ export default function MyCatalog() {
     const [image, setImage] = useState([]);
     const [isEdit, setIsEdit] = useState(false);
     const [idToEdit, setIdToEdit] = useState(null);
-    const [infoBeat, setInfoBeat] = useState(initialValues)
+    const [infoBeat, setInfoBeat] = useState(initialValues);
+    const [reloadPage, setReloadPage] = useState(false);
     
     const { currentUser } = useContext(AuthContext);
 
@@ -43,11 +47,15 @@ export default function MyCatalog() {
                 genre: res.genre,
                 price: res.price,
                 instrument: res.instrument,
-                mood: res.mood
+                mood: res.mood,
+                tags: res.tags
             })
-
         })
         .catch(err => console.log(err))
+    }
+
+    const handleTags = (tags) => {
+        setInfoBeat({...infoBeat, tags: tags })
     }
 
     const handleOnChange = (e) => {
@@ -87,7 +95,8 @@ export default function MyCatalog() {
 
             postBeat(formData)
             .then(response => {
-                getBeatsList()
+                setInfoBeat(initialValues)
+                setReloadPage(true)
             })
             .catch(err => console.log(err))
 
@@ -180,21 +189,24 @@ export default function MyCatalog() {
                             ))
                         }
                     </select>
-{/* 
-                    <label>Tags:</label>
-                    <input></input> */}
 
                     <label>Price:</label>
                     <input name= 'price' type='number' value={infoBeat.price} step='0.01' placeholder='50.00' onChange={ handleOnChange } required/>
                 </div>
 
-                Tags:<Tags/>
+                <div className="tags">
+                    Tags:
+                    <Tags
+                    handleTags={handleTags}
+                    />
+                </div> 
 
                 <button type="submit">Submit</button>
             </form>
             
             <div className="list-beats">
                 <ListBeats
+                    reloadPage={reloadPage}
                     handleEdit={handleEdit}
                 />
             </div>

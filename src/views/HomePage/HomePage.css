@@ -1,0 +1,58 @@
+.HomePage {
+    background-image: url('../../assets/bg.gif');
+    width: 100vw;
+    height: 500px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    color:whitesmoke;
+    padding-top: 70px;
+    font-family: 'Roboto Mono', monospace;
+}
+
+.home-page-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.home-page-info {
+    margin-top: 220px;
+    background-color:  rgb(36, 36, 36);
+    padding: 50px 5% 100px 5%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5%;
+    flex-wrap: wrap;
+    color: whitesmoke
+}
+
+.home-page-divs {
+   width: 100%;
+   display: flex;
+   flex-direction: column;
+   gap: 30px;
+}
+
+.home-page-divs h3 {
+    color: rgb(47, 220, 255)
+}
+
+.home-page-number {
+    font-size: 90px;
+    margin: 0;
+}
+
+.home-page-div {
+    display: flex;
+    font-family: 'Roboto Mono', monospace;
+    gap: 30px;
+}
+
+@media (max-width: 800px) {
+    .home-page-number {
+        display: none;
+    }
+}

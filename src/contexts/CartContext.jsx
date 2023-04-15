@@ -6,36 +6,35 @@ export default CartContext;
 
 export const CartProvider = ({ children }) => {
     const [beatToAdd, setBeatToAdd] = useState(null);
-    const [cartItems, setCartItems] = useState([]);
-    const [totalPrice, setTotalPrice] = useState(0);
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [cartIcon, setCartIcon] = useState(false);
 
     const addItemToCart = () => {
         setIsModalOpen(false);
-        
-        if(!cartItems.includes(beatToAdd)) {
-            setCartItems([...cartItems, beatToAdd])
-            let sum = 0;
-            cartItems.map(item => {
-                sum += item.price
+        setCartIcon(true);
+
+        let totalCart = JSON.parse(localStorage.getItem('cart')) || [];
+
+        if(totalCart) {
+            let alreadyInCart = false;
+            totalCart.map(item => {
+                if(item._id === beatToAdd._id) alreadyInCart = true;
             })
-            setTotalPrice(sum)
+            if(!alreadyInCart) {
+                let cartToAdd = [...totalCart, beatToAdd];
+                localStorage.setItem('cart', [JSON.stringify(cartToAdd)]);
+            }
         }
 
+        totalCart = JSON.parse(localStorage.getItem('cart'));
+
         setBeatToAdd(null)
-
-
-        console.log(cartItems, totalPrice)
     };
 
     const deleteItemFromCart = (id) => {
-        let filtered = [...cartItems].filter(item => item.id !== id);
-        setCartItems(filtered)
-        let sum = 0;
-        filtered.map(item => {
-            sum += item.price
-        })
-        setTotalPrice(sum)
+        let totalCart = JSON.parse(localStorage.getItem('cart')) || [];
+        let filtered = [...totalCart].filter(item => item.id !== id);
+        localStorage.setItem('cart', [JSON.stringify(filtered)])
     };
 
     const setContextBeat = (beat) => {
@@ -59,16 +58,16 @@ export const CartProvider = ({ children }) => {
     
     const value = useMemo(() => {
         return {
-          cartItems,
-          totalPrice,
           addItemToCart,
           deleteItemFromCart,
           isModalOpen,
           setContextBeat,
           beatToAdd,
-          closeModal
+          closeModal,
+          cartIcon,
+          setCartIcon
         }
-    }, [cartItems, totalPrice, addItemToCart, deleteItemFromCart, isModalOpen, setContextBeat, beatToAdd, closeModal]);
+    }, [setCartIcon, cartIcon, addItemToCart, deleteItemFromCart, isModalOpen, setContextBeat, beatToAdd, closeModal]);
 
     return (
         <CartContext.Provider value={value}>

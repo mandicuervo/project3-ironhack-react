@@ -123,75 +123,94 @@ export default function MyCatalog() {
     return(
         <div className="MyCatalog">
             <h1>{!isEdit ? 'New beat' : 'Edit beat'}</h1>
-            <form onSubmit={ handleOnSubmit }>
+            <form onSubmit={ handleOnSubmit } className='form-container'>
                 {
                     !isEdit ?
-                    <div className="upload-beat">
-                        <label><strong>Upload your beat here</strong></label>
-                        <input name= 'beat' type='file' onChange={ handleOnChange }/>
+                    <div className="mb-3 file upload-beat">
+                        <label className="form-label"><strong>Upload your beat here</strong></label>
+                        <input className="form-control" id="formFile" name= 'beat' type='file' onChange={ handleOnChange }/>
                         {
                             error && <p>This field is required!</p>
                         }
                     </div>
                     :
-                    <div className="upload-image">
-                        <label><strong>Choose an image for your beat</strong></label>
-                        <input name= 'image' type='file' onChange={ handleOnChange }/>
+                    <div className="mb-3 file upload-image">
+                        <label htmlFor="formFile" className="form-label"><strong>Choose an image for your beat</strong></label>
+                        <input className="form-control" id="formFile" name= 'image' type='file' onChange={ handleOnChange }/>
                     </div>
                 }
+                
+                <div className="input-group mb-3 description-price">
+                    <label>Price:</label>
+                    <span className="input-group-text">$</span>
+                    <input  step='0.01' onChange={ handleOnChange } value={infoBeat.price} name='price' type="text" className="form-control" required/>
+                    <span className="input-group-text">.00</span>
+                </div>
             
                 <div className="description-beat">
-                    <label>Name:</label>
-                    <input name= 'name' type='text' value={infoBeat.name} onChange={ handleOnChange } required/>
+                    <div className='mb-3 description'>
+                        <label>Title:</label>
+                        <input className='form-control form-control-lg' name= 'name' type='text' value={infoBeat.name} onChange={ handleOnChange } required/>
+                    </div>
 
-                    <label>BPM:</label>
-                    <input name= 'bpm' type='number' value={infoBeat.bpm} onChange={ handleOnChange } required/>
-                    
-                    <label>Key:</label>
-                    <select name= 'key' type='text' value={infoBeat.key} onChange={ handleOnChange }>
-                        {
-                            keysOptions.map((option) => (
-                                <option value={option} key={option}>{option}</option>
-                            ))
-                        }
-                    </select>
 
-                    <label>Scale:</label>
-                    <select name= 'scale' type='text' value={infoBeat.scale} onChange={ handleOnChange } required>
-                        <option value='None'>None</option>
-                        <option value='Minor'>Minor</option>
-                        <option value='Major'>Major</option>
-                    </select>
+                    <div className='mb-3 description'>
+                        <label>BPM:</label>
+                        <input className='form-control form-control-lg'  name= 'bpm' type='number' value={infoBeat.bpm} onChange={ handleOnChange } required/>
+                    </div>
 
-                    <label>Genre:</label>
-                    <select name= 'genre' type='text' value={infoBeat.genre} onChange={ handleOnChange } required>
-                        {
-                            genreOptions.map((genre) => (
-                                <option value={genre} key={genre}>{genre}</option>
-                            ))
-                        }
-                    </select>
+                    <div className='mb-3 description-selects'>
+                        <label>Key:</label>
+                        <select className="form-select form-select-lg mb-3" name= 'key' type='text' value={infoBeat.key} onChange={ handleOnChange }>
+                            {
+                                keysOptions.map((option) => (
+                                    <option value={option} key={option}>{option}</option>
+                                ))
+                            }
+                        </select>
+                    </div>
 
-                    <label>Mood:</label>
-                    <select name='mood' type='text' value={infoBeat.mood} onChange={ handleOnChange } required>
-                        {
-                            moodOptions.map((mood) => (
-                                <option value={mood} key={mood}>{mood}</option>
-                            ))
-                        }
-                    </select>
+                    <div className='mb-3 description-selects'>
+                        <label>Scale:</label>
+                        <select className="form-select form-select-lg mb-3" name= 'scale' type='text' value={infoBeat.scale} onChange={ handleOnChange } required>
+                            <option value='None'>None</option>
+                            <option value='Minor'>Minor</option>
+                            <option value='Major'>Major</option>
+                        </select>
+                    </div>
 
-                    <label>Instrument:</label>
-                    <select name='instrument' type='text' value={infoBeat.instrument} onChange={ handleOnChange } required>
-                        {
-                            instrumentOptions.map((instrument) => (
-                                <option value={instrument} key={instrument}>{instrument}</option>
-                            ))
-                        }
-                    </select>
+                    <div className='mb-3 description-selects'>
+                        <label>Genre:</label>
+                        <select className="form-select form-select-lg mb-3" name= 'genre' type='text' value={infoBeat.genre} onChange={ handleOnChange } required>
+                            {
+                                genreOptions.map((genre) => (
+                                    <option value={genre} key={genre}>{genre}</option>
+                                ))
+                            }
+                        </select>
+                    </div>
 
-                    <label>Price:</label>
-                    <input name= 'price' type='number' value={infoBeat.price} step='0.01' placeholder='50.00' onChange={ handleOnChange } required/>
+                    <div className='mb-3 description-selects'>
+                        <label>Mood:</label>
+                        <select  className="form-select form-select-lg mb-3" name='mood' type='text' value={infoBeat.mood} onChange={ handleOnChange } required>
+                            {
+                                moodOptions.map((mood) => (
+                                    <option value={mood} key={mood}>{mood}</option>
+                                ))
+                            }
+                        </select>
+                    </div>
+
+                    <div className='mb-3 description-selects'>
+                        <label>Instrument:</label>
+                        <select className="form-select form-select-lg mb-3" name='instrument' type='text' value={infoBeat.instrument} onChange={ handleOnChange } required>
+                            {
+                                instrumentOptions.map((instrument) => (
+                                    <option value={instrument} key={instrument}>{instrument}</option>
+                                ))
+                            }
+                        </select>
+                    </div>
                 </div>
 
                 <div className="tags">
@@ -205,6 +224,7 @@ export default function MyCatalog() {
             </form>
             
             <div className="list-beats">
+                <h1>My Beats</h1>
                 <ListBeats
                     reloadPage={reloadPage}
                     handleEdit={handleEdit}

@@ -9,7 +9,7 @@ input[type="range"] {
     
     /* -webkit-appearance: none; */
     position: relative;
-    background:#ccc;
+    background:va(--black);
     width: 100%;
     height: 2px;
     border-radius: 2px;
@@ -19,7 +19,7 @@ input[type="range"] {
   /* Input range - firefox */
   input[type="range"]::-moz-range-track {
     position: relative;
-    background:#ccc;
+    background:va(--black);
     width: 100%;
     height: 2px;
     border-radius: 2px;
@@ -30,7 +30,7 @@ input[type="range"] {
   input[type="range"]::before {
     content: '';
     height: 2px;
-    background: #f50;
+    background: rgb(135, 0, 253);
     width: var(--range-progress);
     border-bottom-left-radius: 2px;
     border-top-left-radius: 2px;
@@ -41,7 +41,7 @@ input[type="range"] {
   
   /* played progress length - firefox */
   input[type="range"]::-moz-range-progress {
-    background: #f50;
+    background:var(--black);
     border-bottom-left-radius: 2px;
     border-top-left-radius: 2px;
     height: 2px;
@@ -54,7 +54,7 @@ input[type="range"] {
     width: 8px;
     border-radius: 50%;
     border: none;
-    background-color: #f50;
+    background-color: var(--black);
     cursor: pointer;
     position: relative;
   }
@@ -69,7 +69,7 @@ input[type="range"] {
     height: 8px;
     width: 8px;
     border-radius: 50%;
-    background: #f50;
+    background: var(--black);
     cursor: pointer;
     border: transparent;
     position: relative;

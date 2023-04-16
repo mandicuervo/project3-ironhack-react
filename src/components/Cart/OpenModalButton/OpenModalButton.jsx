@@ -21,7 +21,7 @@ export default function OpenModalButton({ id }) {
         <>
             { beat &&
                 <div className="OpenModalButton" onClick={ () => setContextBeat(beat) }>
-                    <i className='bx bxs-cart bx-sm'></i>
+                    <i className='bx bxs-cart'></i>
                     <span>$ { beat.price }</span>
                 </div>
             }

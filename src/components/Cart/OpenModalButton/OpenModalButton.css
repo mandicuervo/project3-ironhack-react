@@ -1,5 +1,14 @@
-.OpenModalButton span {
+.OpenModalButton {
     width: 100px;
-    height: 70px;
-    background-color: blue;
+    height: 40px;
+    background-color: var(--pink-two);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px
+}
+
+.OpenModalButton:hover {
+    background-color: var(--pink-one);
 }

@@ -1,6 +1,6 @@
 .HomePage {
     background-image: url('../../assets/bg.gif');
-    width: 100vw;
+    width: 100%;
     height: 500px;
     background-size: cover;
     background-repeat: no-repeat;
@@ -8,6 +8,7 @@
     color:whitesmoke;
     padding-top: 70px;
     font-family: 'Roboto Mono', monospace;
+    margin-top: 60px;
 }
 
 .home-page-content {

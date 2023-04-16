@@ -1,141 +1,136 @@
 .PlayerView {
-    position: absolute;
-    bottom: 10px;
-    left: 150px;
+  position: fixed;
+  bottom: 20px;
+  right: 5vw;
+  z-index: 1;
 }
 
-* {
-    box-sizing: border-box;
-  }
   
-  body {
-    font-family: sans-serif;
-    background: #f2f2f2;
-  }
+.audio-player {
+  background: rgba(255, 36, 244, 0.321);
+  border-radius: 20px;
+}
   
-  .audio-player {
-    background:  rgba(36, 36, 36, 0.712);
-  }
+.inner {
+  width: 90vw;
+  height: 95px;
+  padding: 5px 20px;
+  display: flex;
+}
   
-  .inner {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;
-  }
+/* audio info */
+.audio-info {
+  /* display: flex; */
+  gap: 20px;
+}
   
-  /* audio info */
-  .audio-info {
-    /* display: flex; */
-    gap: 20px;
-  }
+.text {
+  color: var(--blue);
+}
   
-  .text {
-    color: #f50;
-  }
-  
-  .title {
-    color: #fff;
-    font-weight: 100;
-    font-size: 32px;
-    margin-bottom: 0;
-    padding: 2px;
-    line-height: 37px;
-  }
-  
-  /* audio image */
-  .icon-wrapper {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
-  }
-  
-  .audio-image {
-    width: 100px;
-    height: 100px;
-    background: #1e1e1e; 
-  }
-  
-  .audio-icon {
-    font-size: 40px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 80px;
-    width: 80px;
-    border-radius: 50%;
-    background: #989898;
-  }
-  
-  .audio-image img {
-    object-fit: cover;
-    width: 100%;
-    height: 100%;
-    vertical-align: middle;
-  }
-  
-  /* controls */
-  .controls-wrapper {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 10px;
-  }
-  
-  .controls button, .volume button {
-    border: none;
-    background-color: transparent;
-    margin-right: 8px;
-    cursor: pointer;
-  }
-  
-  button svg {
-    font-size: 20px;
-  }
-  
-  .volume {
-    display: flex;
-    align-items: center;
-  }
-  
-  .volume button {
-    margin: 0;
-  }
-  
-  .progress {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    width: 100%;
-  }
-  
-  /* time */
-  .time {
-    color: #333;
-    font-size: 13px;
-    line-height: 46px;
-  }
-  
-  .time.current {
-    color: #f50;
-  }
-  
-  /* Top bar */
-  .top__bar {
-    font-size: 0.875rem;
-    line-height: 1.25rem;
-    text-align: center;
-    padding-top: .5rem;
-    padding-bottom: .5rem;
-    background-color: #fafafa;
-    border-bottom: 1px solid #f0f0f2;
-  }
-  
-  .top__bar a {
-    color: inherit;
-  }
-  
-  .top__bar p {
-    margin: 0;
-  }
+.title {
+  color: #fff;
+  font-weight: 100;
+  font-size: 32px;
+  margin-bottom: 0;
+  padding: 2px;
+  line-height: 37px;
+}
+
+/* audio image */
+.icon-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.audio-image {
+  width: 60px;
+  height: 60px;
+  border-radius: 60px;
+}
+
+.audio-icon {
+  font-size: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80px;
+  width: 80px;
+  border-radius: 50%;
+  background: #989898;
+}
+
+.audio-image img {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  vertical-align: middle;
+}
+
+/* controls */
+.controls-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.controls button, .volume button {
+  border: none;
+  background-color: transparent;
+  margin-right: 8px;
+  cursor: pointer;
+}
+
+button svg {
+  font-size: 20px;
+}
+
+.volume {
+  display: flex;
+  align-items: center;
+}
+
+.volume button {
+  margin: 0;
+}
+
+.progress {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+}
+
+/* time */
+.time {
+  color: #333;
+  font-size: 13px;
+  line-height: 46px;
+}
+
+.time.current {
+  color: var(--blue);
+}
+
+/* Top bar */
+.top__bar {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  text-align: center;
+  padding-top: .5rem;
+  padding-bottom: .5rem;
+  background-color: #7aa7ec;
+  border-bottom: 1px solid #f0f0f2;
+}
+
+.top__bar a {
+  color: inherit;
+}
+
+.top__bar p {
+  margin: 0;
+}
   

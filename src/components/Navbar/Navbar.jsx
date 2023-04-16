@@ -11,6 +11,7 @@ export default function Navbar() {
     const [bgImage, setBgImage] = useState('https://res.cloudinary.com/dgnace8dp/image/upload/v1676728201/profile-default_zk16xw.jpg')
     const [isSidearOpen, setIsSidebarOpen] = useState(false);
     const { currentUser } = useContext(AuthContext);
+
     
     const styles = {
         backgroundImage: `url(${bgImage})`
@@ -35,8 +36,9 @@ export default function Navbar() {
         <div className="Navbar">
             <div className="navbar-container">
                 <div className='title-navbar'>
-                    { !currentUser && <Link to="/"><h3>logo</h3></Link> }
-                    { currentUser && <Link to="/feed"><h3>logo</h3></Link>}
+                    <Link to={currentUser ? "/feed" : "/"}>
+                        <div className='logo'></div>
+                    </Link>
                 </div>
                 <div className='search-bar'>
                     { currentUser && <SearchBar />}

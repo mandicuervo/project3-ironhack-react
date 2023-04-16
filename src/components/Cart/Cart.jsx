@@ -4,15 +4,25 @@ import CartContext from "../../contexts/CartContext";
 import './Cart.css';
 
 export default function Cart() {
+    const [updateCart, setUpdateCart] = useState(false);
     const [showCart, setShowCart] = useState(false);
     const [cartList, setCartList] = useState([]);
-    const { beatToAdd, cartIcon, setCartIcon } = useContext(CartContext);
+    const { beatToAdd, deleteItemFromCart } = useContext(CartContext);
+    const [icon, setIcon] = useState('emptyCart');
     const navigate = useNavigate();
 
     useEffect(() => {
         const listFromStorage = JSON.parse(localStorage.getItem('cart'));
         setCartList(listFromStorage);
-    }, [beatToAdd, showCart])
+    }, [beatToAdd, showCart, updateCart])
+
+    useEffect(() => {
+        if(cartList && cartList.length > 0) {
+            setIcon('fullCart')
+        } else {
+            setIcon('emptyCart')
+        }
+    }, [cartList])
 
     const toggleCart = () => {
         setShowCart(!showCart);
@@ -28,11 +38,16 @@ export default function Cart() {
         setShowCart(false);
     }
 
+    const deleteItem = (id) => {
+        deleteItemFromCart(id);
+        setUpdateCart(!updateCart);
+    }
+
     return(
         <div className="Cart">
             {
-                cartIcon ? 
-                <i class='bx bxs-cart-add bx-sm' onClick={toggleCart}></i>
+                icon === 'fullCart' ? 
+                <i className='bx bxs-cart-add bx-sm' onClick={toggleCart}></i>
                 :
                 <i className='bx bxs-cart bx-sm' onClick={toggleCart}></i>
             }
@@ -41,9 +56,10 @@ export default function Cart() {
                 <div className="cart-list">
                     {
                         cartList?.map(item => (
-                            <div>
-                                <span>{item.name}</span>
+                            <div className="cart-items" key={item._id}>
+                                <p>{item.name}</p>
                                 <span>$ {item.price}</span>
+                                <i className='bx bxs-x-circle' onClick={() => deleteItem(item._id)}></i>
                             </div>
                         ))
                     }

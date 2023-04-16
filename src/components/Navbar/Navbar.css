@@ -7,7 +7,7 @@
 
 .navbar-container {
     height: 60px;
-    background-color: rgb(36, 36, 36);
+    background-color:black;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -15,10 +15,17 @@
     color: whitesmoke;
 }
 
-.title-navbar h3 {
-    width: 100px;
-    height: 50px;
-    color: aqua;
+.logo {
+    height: 45px;
+    width: 160px;
+    background-image: url(/src/assets/1.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.logo:hover {
+    background-image: url('../../assets/2.png');
 }
 
 .title-navbar a {

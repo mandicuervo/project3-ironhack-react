@@ -11,14 +11,14 @@ import { Navigate } from 'react-router-dom'
 import Profile from './views/Profile/Profile'
 import PlayerView from './views/PlayerView/PlayerView'
 import LoadingScreen from './views/LoadingScreen/LoadingScreen'
-import Cart from './components/Cart/Cart'
+import Checkout from './views/Checkout/Checkout'
 import Modal from './components/Cart/Modal/Modal'
 
 function App() {
   return (
     <div className="App">
-      <Navbar />
       <PlayerView />
+      <Navbar />
       <Modal />
       <Routes>
           <Route path="/" element={ <HomePage /> } />
@@ -43,7 +43,7 @@ function App() {
 
           <Route path="/checkout" element={ 
             <ProtectedRoute>
-                <Cart />
+                <Checkout />
             </ProtectedRoute>
           } />
 

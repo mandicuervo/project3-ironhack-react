@@ -7,11 +7,9 @@ export default CartContext;
 export const CartProvider = ({ children }) => {
     const [beatToAdd, setBeatToAdd] = useState(null);
     const [isModalOpen, setIsModalOpen] = useState(false);
-    const [cartIcon, setCartIcon] = useState(false);
 
     const addItemToCart = () => {
         setIsModalOpen(false);
-        setCartIcon(true);
 
         let totalCart = JSON.parse(localStorage.getItem('cart')) || [];
 
@@ -33,8 +31,9 @@ export const CartProvider = ({ children }) => {
 
     const deleteItemFromCart = (id) => {
         let totalCart = JSON.parse(localStorage.getItem('cart')) || [];
-        let filtered = [...totalCart].filter(item => item.id !== id);
-        localStorage.setItem('cart', [JSON.stringify(filtered)])
+        let filtered = [...totalCart].filter(item => item._id !== id);
+        localStorage.removeItem('cart');
+        localStorage.setItem('cart', [JSON.stringify(filtered)]);
     };
 
     const setContextBeat = (beat) => {
@@ -63,11 +62,9 @@ export const CartProvider = ({ children }) => {
           isModalOpen,
           setContextBeat,
           beatToAdd,
-          closeModal,
-          cartIcon,
-          setCartIcon
+          closeModal
         }
-    }, [setCartIcon, cartIcon, addItemToCart, deleteItemFromCart, isModalOpen, setContextBeat, beatToAdd, closeModal]);
+    }, [addItemToCart, deleteItemFromCart, isModalOpen, setContextBeat, beatToAdd, closeModal]);
 
     return (
         <CartContext.Provider value={value}>

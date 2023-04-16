@@ -35,14 +35,12 @@ export default function AudioPlayer() {
   }, [tracks])
   
   const handleClose = () => {
-    console.log('entra en handle')
     stopMusic()
   }
 
   return(
     <div className="audio-player">
       <div className="inner">
-        <span onClick={ handleClose }>CLOSE</span>
         <DisplayTrack
           {...{ currentTrack, audioRef, setDuration, progressBarRef }}
         />
@@ -56,6 +54,7 @@ export default function AudioPlayer() {
         />
 
       </div>
+      <span onClick={ handleClose }><i className='bx bxs-x-square bx-sm'></i></span>
     </div>
   )
 }

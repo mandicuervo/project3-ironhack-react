@@ -18,6 +18,28 @@
     right: 28px;
 }
 
+.cart-items {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+.cart-items p {
+    width: 150px;
+    margin: 0;
+}
+
+.cart-items span {
+    width: 50px;
+}
+
+.bxs-x-circle {
+    color: red;
+    cursor: pointer;
+    font-size: 18px;
+}
+
 .checkout-btn {
     background-color: #4ac24a;
     padding: 8px;

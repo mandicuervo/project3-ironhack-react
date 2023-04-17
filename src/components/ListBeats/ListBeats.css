@@ -24,27 +24,27 @@
     border-radius: 20px;
 }
 
-.image-container {
+.ListBeats .image-container {
     position: relative;
 }
 
-.image-container img {
+.ListBeats .image-container img {
     cursor: pointer;
 }
 
-.icon-container {
+.ListBeats .icon-container {
     position: absolute;
     top: 15px;
     right: 15px;
     visibility: hidden;
 }
 
-.list:hover .icon-container {
+.ListBeats .list:hover .icon-container {
     visibility: visible;
     cursor: pointer;
 }
 
-.bx-play-circle {
+.ListBeats .bx-play-circle {
     font-size: 40px;
 }
 

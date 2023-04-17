@@ -9,6 +9,7 @@ export const CartProvider = ({ children }) => {
     const [isModalOpen, setIsModalOpen] = useState(false);
 
     const addItemToCart = () => {
+        console.log(beatToAdd)
         setIsModalOpen(false);
 
         let totalCart = JSON.parse(localStorage.getItem('cart')) || [];

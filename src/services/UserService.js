@@ -10,4 +10,6 @@ export const getAllUsers = () => authenticatedHttp.get('/users')
 
 export const editUser = (userInfo) => authenticatedHttp.post('/users/edit', userInfo)
 
+export const getUserByUsername = (username) => authenticatedHttp.get(`/users/username/${username}`)
+
 

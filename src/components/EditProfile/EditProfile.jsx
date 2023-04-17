@@ -56,7 +56,7 @@ export default function EditProfile() {
 
     return(
         <div className="EditProfile">
-            <form onSubmit={ handleOnSubmit }>
+            <form onSubmit={ handleOnSubmit } className="form-control">
                 <div className="form-edit-profile">
                     <label>Image:</label>
                     <input name= 'image' type='file' onChange={handleOnChange} />

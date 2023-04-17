@@ -13,6 +13,7 @@ import PlayerView from './views/PlayerView/PlayerView'
 import LoadingScreen from './views/LoadingScreen/LoadingScreen'
 import Checkout from './views/Checkout/Checkout'
 import Modal from './components/Cart/Modal/Modal'
+import BeatView from './views/BeatView/BeatView'
 
 function App() {
   return (
@@ -46,6 +47,12 @@ function App() {
                 <Checkout />
             </ProtectedRoute>
           } />
+
+          <Route path="/beats/:id" element={
+            <ProtectedRoute>
+              <BeatView/>
+            </ProtectedRoute>
+          }/>
 
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>

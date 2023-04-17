@@ -1,26 +1,36 @@
 .MyCatalog {
     display: flex;
     flex-direction: column;
-    background-color: var(--black-secondary);
+    background-color: var(--black);
     color: whitesmoke;
 }
 
+.MyCatalog h1 {
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    font-weight: bolder;
+    color: white;
+    font-family: 'Orbitron', sans-serif;
+    /* text-shadow: #FFF 0px 0px 15px, #ff2ded 0px 0px 30px, #f330d6 0px 0px 40px, #e677d9 0px 0px 50px; */
+}
+
 .form-container {
-    max-width: 800px;
+        padding: 30px;
 }
 
 .description, .description-price {
-    max-width: 350px;
+    max-width: 200px;
 }
 
 .description-beat {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: space-around;
 }
 
 .file input {
-    width: 300px;
+    width: 500px;
 }
 
 .description-selects select {

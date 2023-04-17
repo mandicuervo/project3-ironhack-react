@@ -1,15 +1,40 @@
+.MyProfile {
+    padding-top: 60px;
+}
+
 .header-profile {
-    height: 300px;
-    background-color: rgb(64, 63, 63);
+    height: 350px;
+    background-color: var(--black);
     color: whitesmoke
 }
 
 .img {
-    width: 200px;
-    height: 200px;
+    width: 180px;
+    height: 180px;
 }
 
 .links-profile a {
+    width: 25%;
     text-decoration: none;
-    display: inline-block;
+    color: whitesmoke;
+    font-weight:bolder;
+    text-align: center;
+}
+
+.links-profile a:hover {
+    border-right: 4px solid var(--pink-one);
+    border-left: 4px solid var(--pink-one);
+}
+
+.links-profile {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 10px;
+    background-color: var(--black-secondary);
+}
+
+.links-profile:hover {
+    cursor: pointer;
+    background-color: var(--transparent-black);
 }

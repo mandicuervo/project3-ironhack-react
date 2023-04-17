@@ -122,11 +122,11 @@ export default function MyCatalog() {
 
     return(
         <div className="MyCatalog">
-            <h1>{!isEdit ? 'New beat' : 'Edit beat'}</h1>
-            <form onSubmit={ handleOnSubmit } className='form-container'>
+            <h1>{!isEdit ? 'New Beat' : 'Edit your Beat'}</h1>
+            <form onSubmit={ handleOnSubmit } className='form-control form-container'>
                 {
                     !isEdit ?
-                    <div className="mb-3 file upload-beat">
+                    <div className="mb-3 file uploads">
                         <label className="form-label"><strong>Upload your beat here</strong></label>
                         <input className="form-control" id="formFile" name= 'beat' type='file' onChange={ handleOnChange }/>
                         {
@@ -134,7 +134,7 @@ export default function MyCatalog() {
                         }
                     </div>
                     :
-                    <div className="mb-3 file upload-image">
+                    <div className="mb-3 file uploads">
                         <label htmlFor="formFile" className="form-label"><strong>Choose an image for your beat</strong></label>
                         <input className="form-control" id="formFile" name= 'image' type='file' onChange={ handleOnChange }/>
                     </div>
@@ -147,6 +147,13 @@ export default function MyCatalog() {
                     <span className="input-group-text">.00</span>
                 </div>
             
+                <div className="tags">
+                    Tags:
+                    <Tags
+                    handleTags={handleTags}
+                    />
+                </div> 
+                
                 <div className="description-beat">
                     <div className='mb-3 description'>
                         <label>Title:</label>
@@ -213,12 +220,6 @@ export default function MyCatalog() {
                     </div>
                 </div>
 
-                <div className="tags">
-                    Tags:
-                    <Tags
-                    handleTags={handleTags}
-                    />
-                </div> 
 
                 <button type="submit">Submit</button>
             </form>

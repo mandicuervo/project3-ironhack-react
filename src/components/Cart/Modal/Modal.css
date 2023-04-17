@@ -1,7 +1,5 @@
 .Modal {
-    background: rgb(17,17,17);
-    background: radial-gradient(circle, rgba(17,17,17,1) 0%, rgba(223,96,203,1) 100%);
-    height: 500px;
+    background: rgb(36,36,36);
     width: 400px;
     color: white;
     position: absolute;
@@ -14,4 +12,41 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    gap: 10px;
+    padding: 30px;
+    font-size: xx-small;
+}
+.info-user-beat img {
+    width: 100px;
+    height: 80px;
+}
+
+.formats {
+    display: flex;
+    gap: 30px;
+    font-size: small;
+}
+
+.formats p {
+    display: flex;
+    justify-content: center;
+    width: 50px;
+    height: max-content;
+    background-color: rgb(52, 52, 52);
+    color: whitesmoke;
+    border-radius: 10px;
+}
+
+.info-contract {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: space-around;
+    align-items: center;
+    font-size: xx-small;
+    
+}
+
+.observation-contract {
+    font-size: xx-small;
 }

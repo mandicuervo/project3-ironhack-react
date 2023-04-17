@@ -1,15 +1,15 @@
 :root {
-    --transparent-black: rgba(0, 0, 0, 0.915);
+    --transparent-black: rgba(0, 0, 0, 0.86);
     --white: white;
     --black: rgb(36, 36, 36);
     --black-secondary:  rgb(17, 17, 17);
     --pink-one: #f100e1;
-    --pink-two: #ff55e8;
-    --blue: #2baed5;
+    --pink-two:#fd94ff;
+    --blue: #646bd5;
 }
 
 .App {
-    font-family: 'Roboto Mono', monospace;
+    font-family: 'Comfortaa', cursive;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }

@@ -1,0 +1,43 @@
+.BeatView {
+    padding-top: 80px;
+    padding-left: 40px;
+    background-color: var(--black);
+    color: whitesmoke;
+}
+
+.beat-info-play {
+    display: flex;
+}
+
+.BeatView .image-container {
+    position: relative;
+}
+
+.BeatView .image-container img {
+    cursor: pointer;
+}
+
+.BeatView .bx-play-circle {
+    font-size: 100px;
+    position: absolute;
+    left: 50px;
+    top: 48px;
+}
+
+.info {
+    padding: 15px;
+    display: flex;
+    gap:80px
+}
+
+.info-beat {
+    display: flex;
+    gap:20px;
+    color:  rgb(112, 112, 112);
+    font-weight: bold;
+}
+
+
+.tilt-play {
+    width: fit-content;
+}

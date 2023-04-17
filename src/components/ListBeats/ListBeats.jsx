@@ -5,6 +5,7 @@ import './ListBeats.css'
 import { deleteBeat, getBeatsFromUser } from '../../services/BeatsService';
 import OpenModalButton from '../Cart/OpenModalButton/OpenModalButton';
 import { Tilt } from 'react-tilt';
+import { useNavigate } from 'react-router-dom';
 
 const defaultOptions = {
 	reverse:        false,  // reverse the tilt direction
@@ -18,22 +19,33 @@ const defaultOptions = {
 	easing:         "cubic-bezier(.03,.98,.52,.99)",    // Easing on enter/exit.
 };
 
-export default function ListBeats({handleEdit, reloadPage}) {
+export default function ListBeats({handleEdit, reloadPage, userId = null}) {
     const [beatsList, setBeatsList] = useState([])
     const { changeMusic } = useContext(MusicContext);
     const { currentUser } = useContext(AuthContext);
+    const navigate = useNavigate();
     
-    const getList = () => {
-        getBeatsFromUser(currentUser.id)
-        .then(response => setBeatsList(response))
-        .catch(err => console.log(err))
+    const getList = (userId) => {
+        if(userId) {
+            getBeatsFromUser(userId)
+            .then(response => setBeatsList(response))
+            .catch(err => console.log(err))
+        } else  {
+            getBeatsFromUser(currentUser.id)
+            .then(response => setBeatsList(response))
+            .catch(err => console.log(err))
+        }
     }
 
     useEffect(() => {
         if(currentUser) {
-            getList()
+            if(userId) {
+                getList(userId)
+            } else {
+                getList()
+            }
         }
-    }, [currentUser, reloadPage])
+    }, [currentUser, reloadPage, userId])
 
     const handleOnPlay = (id) => {
         changeMusic(id)
@@ -43,6 +55,10 @@ export default function ListBeats({handleEdit, reloadPage}) {
         deleteBeat(id)
         .then(res => getList())
         .catch(err => console.log(err))
+    }
+
+    const goToDetail = (id) => {
+        navigate(`/beats/${id}`)
     }
 
     return(
@@ -56,14 +72,14 @@ export default function ListBeats({handleEdit, reloadPage}) {
                                 <span className='icon-container'><i className='bx bx-play-circle'></i></span>
                             </Tilt>
                         </div>
-                        <div className='description-beat'>
+                        <div className='description-beat' onClick={()=>goToDetail(beat._id)}>
                             <p>{beat.name}</p>
                             <p>{beat.bpm}bpm</p>
-                            <p>{beat.owner}</p>
+                            <p>{beat.owner.username}</p>
                         </div>
                         <div>
                             {
-                                currentUser.id === beat.owner && 
+                                currentUser.id === beat.owner.id && 
                                 <>
                                 <button onClick={ ()=>handleEdit(beat._id) }>EDIT</button>
                                 <i className='bx bxs-trash' onClick={ ()=>handleDelete(beat._id) }></i>

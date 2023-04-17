@@ -1,29 +1,28 @@
 import { useEffect, useState, useContext } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import About from '../../components/About/About';
-import Beats from '../../components/Beats/Beats';
 import Comments from '../../components/Comments/Comments';
 import AuthContext from '../../contexts/AuthContext';
 import './Profile.css'
+import { getUserByUsername } from '../../services/UserService';
+import ListBeats from '../../components/ListBeats/ListBeats';
 
 
 export default function Profile() {
-    const [componentToShow, setComponentToShow] = useState('beats')
+    const [componentToShow, setComponentToShow] = useState('beats');
+    const [user, setUser] = useState(null);
     const { username, component } = useParams();
-    const [bgImage, setBgImage] = useState('https://res.cloudinary.com/dgnace8dp/image/upload/v1676728201/profile-default_zk16xw.jpg')
-    const {currentUser} = useContext(AuthContext);
     const navigate = useNavigate();
 
-
-    const styles = {
-        backgroundImage: `url(${bgImage})`
-    }
-
     useEffect(() => {
-        if(currentUser) {
-            setBgImage(currentUser.image)
+        if(username){
+            getUserByUsername(username)
+            .then(res => {
+                setUser(res)
+            })
+            .catch(err => console.log(err))
         }
-    }, [currentUser])
+    },[username]);
 
     useEffect(() => {
         if (component === 'beats') {
@@ -38,28 +37,34 @@ export default function Profile() {
     })
     
     return (
-        <div className='MyProfile'>
-            <div className='header-profile'>
-                <img className="image-profile img" style={styles}/>
-                
-                <h3>{currentUser?.username}</h3>
-                <h3>{currentUser?.email}</h3>
-            </div>
+        <>
+            {
+                user && 
+                <div className='MyProfile'>
+                    <div className='header-profile'> 
+                        <img className="image-profile img" style={{backgroundImage: `url(${user.image})`}}/>
+                        <h3>{user.username}</h3>
+                        <h3>{user.email}</h3>
+                    </div>
 
-            <div className='links-profile'>
-                <Link to={`/profile/${username}/beats`}>BEATS</Link>
-                <Link to={`/profile/${username}/comments`}>COMMENTS</Link>
-                <Link to={`/profile/${username}/about`}>ABOUT</Link>
-                {
-                    componentToShow === 'beats' && <Beats />
-                }
-                {
-                    componentToShow === 'comments' && <Comments />
-                }
-                {
-                    componentToShow === 'about' && <About />
-                }
-            </div>
-        </div>
+                    <div className='links-profile'>
+                        <Link to={`/profile/${username}/beats`}>BEATS</Link>
+                        <Link to={`/profile/${username}/comments`}>COMMENTS</Link>
+                        <Link to={`/profile/${username}/about`}>ABOUT</Link>
+                    </div>
+                    <div className='components-profile'>
+                        {
+                            componentToShow === 'beats' && <ListBeats userId={user.id}/>
+                        }
+                        {
+                            componentToShow === 'comments' && <Comments />
+                        }
+                        {
+                            componentToShow === 'about' && <About />
+                        }
+                    </div>
+                </div>
+            }
+        </>
     )
 }

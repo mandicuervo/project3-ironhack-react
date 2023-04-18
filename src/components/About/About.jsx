@@ -1,7 +1,16 @@
-export default function About() {
+export default function About({user}) {
     return(
         <div className="About">
-            <h1>ABOUT HERE</h1>
+            {
+                user.bio?
+                <div>
+                    <p>{user.bio}</p>
+                </div>
+                :
+                <div>
+                    <p>This beatmaker still dont have a bio</p>
+                </div>
+            }
         </div>
     )
 }

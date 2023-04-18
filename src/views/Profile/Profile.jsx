@@ -6,11 +6,14 @@ import AuthContext from '../../contexts/AuthContext';
 import './Profile.css'
 import { getUserByUsername } from '../../services/UserService';
 import ListBeats from '../../components/ListBeats/ListBeats';
+import { getAllBeatsFromUser } from '../../services/BeatsService';
 
 
 export default function Profile() {
     const [componentToShow, setComponentToShow] = useState('beats');
     const [user, setUser] = useState(null);
+    const [playSum, setPlaySum] = useState(0);
+    const [favSum, setFavSum] = useState(0);
     const { username, component } = useParams();
     const navigate = useNavigate();
 
@@ -19,6 +22,18 @@ export default function Profile() {
             getUserByUsername(username)
             .then(res => {
                 setUser(res)
+                getAllBeatsFromUser(res.id)
+                .then(list => {
+                    let plays = 0;
+                    let favorites = 0;
+                    list.map(beat => {
+                        plays += beat.playingCount
+                        favorites += beat.favoriteCount
+                    }) 
+                    setPlaySum(plays)
+                    setFavSum(favorites)
+                })
+                .catch(err => console.log(err))
             })
             .catch(err => console.log(err))
         }
@@ -43,8 +58,14 @@ export default function Profile() {
                 <div className='MyProfile'>
                     <div className='header-profile'> 
                         <img className="image-profile img" style={{backgroundImage: `url(${user.image})`}}/>
-                        <h3>{user.username}</h3>
-                        <h3>{user.email}</h3>
+                        <div className='user-info'>
+                            <h3>{user.username}</h3>
+                            <h3>{user.email}</h3>
+                        </div>
+                        <div className='beat-user-info'>
+                            <p>{playSum}plays</p>
+                            <p>{favSum}favorites</p>
+                        </div>
                     </div>
 
                     <div className='links-profile'>
@@ -60,7 +81,7 @@ export default function Profile() {
                             componentToShow === 'comments' && <Comments />
                         }
                         {
-                            componentToShow === 'about' && <About />
+                            componentToShow === 'about' && <About user={user} />
                         }
                     </div>
                 </div>

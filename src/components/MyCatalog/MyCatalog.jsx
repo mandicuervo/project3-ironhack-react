@@ -128,7 +128,7 @@ export default function MyCatalog() {
                     !isEdit ?
                     <div className="mb-3 file uploads">
                         <label className="form-label"><strong>Upload your beat here</strong></label>
-                        <input className="form-control" id="formFile" name= 'beat' type='file' onChange={ handleOnChange }/>
+                        <input className="form-control" name= 'beat' type='file' onChange={ handleOnChange }/>
                         {
                             error && <p>This field is required!</p>
                         }
@@ -136,7 +136,7 @@ export default function MyCatalog() {
                     :
                     <div className="mb-3 file uploads">
                         <label htmlFor="formFile" className="form-label"><strong>Choose an image for your beat</strong></label>
-                        <input className="form-control" id="formFile" name= 'image' type='file' onChange={ handleOnChange }/>
+                        <input className="form-control" name= 'image' type='file' onChange={ handleOnChange }/>
                     </div>
                 }
                 

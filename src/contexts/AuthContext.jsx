@@ -11,6 +11,7 @@ export const AuthProvider = ({ children }) => {
 
   const [currentUser, setCurrentUser] = useState(null); // El usuario en sesión
   const [isAuthLoaded, setIsAuthLoaded] = useState(false); // Para saber si ya tengo usuario o al menos lo he comprobado
+  const [updateImageNavBar, setUpdateImageNavbar] = useState(false);
 
   const getCurrentUser = useCallback((callback) => {
     getCurrentUserService() // llama a /users/me para que con el token, me traiga a mi usuario, se lo enchufe al contexto y toda mi aplicación sepa quien es
@@ -19,7 +20,7 @@ export const AuthProvider = ({ children }) => {
         setIsAuthLoaded(true)
         callback && callback() // Para cuando necesite redirigir despues de un login
       })
-  }, [])
+  }, [updateImageNavBar])
 
   const login = useCallback((token) => {
     // Lo guaaardo
@@ -43,10 +44,12 @@ export const AuthProvider = ({ children }) => {
   const value = useMemo(() => {
     return {
       currentUser, // Usuario que está en sesión
-      isAuthLoaded, // Si ya intenté saber si hay usuario en sesión
-      login // login
+      isAuthLoaded, // Si. ya intenté saber si hay usuario en sesión
+      login, // login
+      updateImageNavBar,
+      setUpdateImageNavbar 
     }
-  }, [currentUser, isAuthLoaded, login])
+  }, [currentUser, isAuthLoaded, login, updateImageNavBar, setUpdateImageNavbar])
 
   return (
     <AuthContext.Provider value={value}>

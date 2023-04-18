@@ -12,4 +12,7 @@ export const editBeat = (beatId, beatInfo) => authenticatedHttp.post(`/beat/edit
 
 export const deleteBeat = (id) => authenticatedHttp.delete(`/beats/delete/${id}`)
 
+export const addCountPlay = (beatId) => authenticatedHttp.put(`/beat/count/${beatId}`);
+
+export const getAllBeatsFromUser = (id) => authenticatedHttp.get(`/beats/count/${id}`)
 

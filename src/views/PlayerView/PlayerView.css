@@ -7,8 +7,14 @@
 
   
 .audio-player {
-  background: rgba(255, 36, 244, 0.321);
+  background: rgba(29, 8, 187, 0.371);
   border-radius: 20px;
+}
+
+.blur {
+  backdrop-filter: blur(8px);
+  height: 100%;
+	width: 100%;
 }
   
 .inner {
@@ -59,7 +65,7 @@
   height: 80px;
   width: 80px;
   border-radius: 50%;
-  background: #989898;
+  background: #932727;
 }
 
 .audio-image img {
@@ -102,6 +108,17 @@ button svg {
   align-items: center;
   gap: 10px;
   width: 100%;
+}
+
+.progress input {
+  /* background: linear-gradient(to right, #82CFD0 0%, #82CFD0 50%, #fff 50%, #fff 100%);
+  border: solid 1px #82CFD0;
+  border-radius: 8px;
+  height: 7px;
+  width: 356px;
+  outline: none;
+  transition: background 450ms ease-in; */
+  -webkit-appearance: none;
 }
 
 /* time */

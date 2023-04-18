@@ -38,6 +38,9 @@ export default function Checkout() {
                     <div>
                         TOTAL: $ {totalPrice}
                     </div>
+                    <div>
+                        <button type="submit">BUY</button>
+                    </div>
                 </div>
                 :
                 <div>

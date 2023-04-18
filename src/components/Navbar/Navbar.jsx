@@ -10,7 +10,7 @@ import Notification from '../Notfication/Notification';
 export default function Navbar() {
     const [bgImage, setBgImage] = useState('https://res.cloudinary.com/dgnace8dp/image/upload/v1676728201/profile-default_zk16xw.jpg')
     const [isSidearOpen, setIsSidebarOpen] = useState(false);
-    const { currentUser } = useContext(AuthContext);
+    const { currentUser, updateImageNavBar } = useContext(AuthContext);
 
     
     const styles = {
@@ -21,7 +21,7 @@ export default function Navbar() {
         if(currentUser) {
             setBgImage(currentUser.image)
         }
-    }, [currentUser])
+    }, [currentUser, updateImageNavBar])
 
 
     const openSidebar = () => {

@@ -5,7 +5,9 @@
 .header-profile {
     height: 350px;
     background-color: var(--black);
-    color: whitesmoke
+    color: whitesmoke;
+    display: flex;
+    flex-direction: column;
 }
 
 .img {

@@ -10,7 +10,7 @@ export default function EditProfile() {
         bio: "",
         username: ""
     })
-    const { currentUser } = useContext(AuthContext);
+    const { currentUser, setUpdateImageNavbar, updateImageNavbar } = useContext(AuthContext);
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -49,7 +49,12 @@ export default function EditProfile() {
         
         editUser(formData)
         .then(response => {
-            navigate(`/profile/${currentUser.username}`)
+            setUpdateImageNavbar(!updateImageNavbar);
+            if(user.username) {
+                navigate(`/profile/${user.username}/beats`)
+            } else {
+                navigate(`/profile/${currentUser.username}/beats`)
+            }
         })
         .catch(err => console.log(err))
     }
@@ -58,17 +63,17 @@ export default function EditProfile() {
         <div className="EditProfile">
             <form onSubmit={ handleOnSubmit } className="form-control">
                 <div className="form-edit-profile">
-                    <label>Image:</label>
-                    <input name= 'image' type='file' onChange={handleOnChange} />
+                    <label className="form-label">Image:</label>
+                    <input className='form-control' name= 'image' type='file' onChange={handleOnChange} />
                 
-                    <label>Name:</label>
-                    <input name= 'name' value={user.name} type='text' onChange={handleOnChange} />
+                    <label className="form-label">Name:</label>
+                    <input className='form-control' name= 'name' value={user.name} type='text' onChange={handleOnChange} />
 
-                    <label>Bio:</label>
-                    <input name= 'bio' value={user.bio} type='text' onChange={handleOnChange} />
+                    <label className="form-label">Bio:</label>
+                    <input className='form-control' name= 'bio' value={user.bio} type='text' onChange={handleOnChange} />
                 
-                    <label>Username:</label>
-                    <input name='username' value={user.username} type='text' onChange={handleOnChange} />
+                    <label className="form-label">Username:</label>
+                    <input className='form-control' name='username' value={user.username} type='text' onChange={handleOnChange} />
                 </div>
                 <button type="submit">Submit</button>
             </form>

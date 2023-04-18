@@ -39,7 +39,7 @@ export default function AudioPlayer() {
   }
 
   return(
-    <div className="audio-player">
+    <div className="audio-player blur">
       <div className="inner">
         <DisplayTrack
           {...{ currentTrack, audioRef, setDuration, progressBarRef }}

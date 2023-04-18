@@ -1,5 +1,5 @@
 import { createContext, useState, useMemo, useEffect } from "react";
-import { getOneBeat } from "../services/BeatsService";
+import { addCountPlay, getOneBeat } from "../services/BeatsService";
 
 const MusicContext = createContext()
 export default MusicContext;
@@ -13,14 +13,18 @@ export const MusicProvider = ({ children }) => {
             getOneBeat(idMusic)
             .then((res) => {
                 setCurrentMusic(res)
+                addCountPlay(idMusic)
             }) 
             .catch(err => console.log(err))
         }
     }, [idMusic])
 
+
     const changeMusic = (id) => {
         setIdMusic(id)
     }
+
+
 
     const stopMusic = () => {
         setCurrentMusic(null)

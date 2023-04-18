@@ -8,6 +8,10 @@
     --blue: #41ccef;
 }
 
+body {
+  overflow-x: hidden;
+}
+
 .App {
     font-family: 'Comfortaa', cursive;
     -webkit-font-smoothing: antialiased;

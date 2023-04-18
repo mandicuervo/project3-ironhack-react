@@ -32,7 +32,6 @@ export default function BeatView() {
             getOneBeat(id)
             .then(res => {
                 setBeatInfo(res)
-
                 getIsFavorited(id, currentUser.id)
                 .then(res => {
                     if(res) {

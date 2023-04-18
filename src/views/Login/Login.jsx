@@ -1,11 +1,12 @@
+import './Login.css'
 import { useFormik } from 'formik';
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import FormControl from '../../components/FormControl/FormControl';
 import Input from '../../components/Input/Input';
 import AuthContext from '../../contexts/AuthContext';
 import { login as loginService } from '../../services/AuthService'
 import { loginSchema } from '../../schemas/loginSchema';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import googleIcon from '../../assets/google-icon.png';
 
 const initialValues = {
@@ -15,6 +16,14 @@ const initialValues = {
 
 export default function Login() {
     const { login } = useContext(AuthContext);
+    const { currentUser } = useContext(AuthContext);
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        if(currentUser) {
+            navigate('/feed')
+        }
+    }, [currentUser])
 
     const {
         values, errors, touched, handleChange, handleBlur, isSubmitting, handleSubmit, setSubmitting, setFieldError

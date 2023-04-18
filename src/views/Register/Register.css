@@ -1,0 +1,49 @@
+.Register {
+    padding-top: 60px;
+    background-image: url('../../assets/bg.gif');
+    height: 100vh;
+    width: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.form-register {
+    padding: 15px;
+    width: 600px;
+    margin: 30px auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    backdrop-filter: blur(8px);
+    position: relative;
+}
+
+.form-register button {
+    margin-right: 130px;
+}
+
+.google-button {
+    cursor: pointer;
+    background: var(--pink-two);
+    position: absolute;
+    bottom: 15px;
+    right: 192px;
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    padding: 7px 10px;
+    border-radius: 6px;
+}
+
+.google-button:hover {
+    background: var(--pink-one);
+}
+
+.google-button img {
+    width: 20px;
+}
+
+.google-button p {
+    margin: 0;
+}

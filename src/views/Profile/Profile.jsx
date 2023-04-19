@@ -63,14 +63,15 @@ export default function Profile() {
                             <h3>{user.email}</h3>
                         </div>
                         <div className='beat-user-info'>
-                            <p>{playSum}plays</p>
-                            <p>{favSum}favorites</p>
+                            <i className='bx bx-play-circle bx-md'></i>
+                            <p>{playSum} plays</p>
+                            <i class='bx bxs-heart-circle bx-md'></i>
+                            <p>{favSum} favorites</p>
                         </div>
                     </div>
 
                     <div className='links-profile'>
                         <Link to={`/profile/${username}/beats`}>BEATS</Link>
-                        <Link to={`/profile/${username}/comments`}>COMMENTS</Link>
                         <Link to={`/profile/${username}/about`}>ABOUT</Link>
                     </div>
                     <div className='components-profile'>

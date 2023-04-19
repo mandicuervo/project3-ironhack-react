@@ -37,11 +37,27 @@
 .links-navbar {
     text-decoration: none;
     display: flex;
+    align-items: center;
     gap: 20px;
 }
 
+.links-navbar-currentUser {
+    color: white;
+}
+
+
 .links-navbar a {
     text-decoration: none;
+    color: white;
+}
+
+
+.links-nav:hover{
+    width: fit-content;
+    height: fit-content;
+    background-color: var(--pink-two);
+    color: var(--black);
+    border-radius: 3px;
 }
 
 .image-profile {

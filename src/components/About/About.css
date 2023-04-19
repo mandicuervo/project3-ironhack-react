@@ -1,0 +1,15 @@
+.About {
+    padding: 50px;
+    display: flex;
+    background-color: var(--black);
+    color: white;
+}
+
+.bxs-user-pin {
+    color: var(--pink-two);
+}
+
+.bio {
+    display: flex;
+    gap: 30px;
+}

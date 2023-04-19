@@ -1,3 +1,4 @@
+import './EditProfile.css'
 import { useContext, useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom";
 import AuthContext from "../../contexts/AuthContext"
@@ -61,7 +62,8 @@ export default function EditProfile() {
 
     return(
         <div className="EditProfile">
-            <form onSubmit={ handleOnSubmit } className="form-control">
+            <h1>Edit Your Profile Here</h1>
+            <form onSubmit={ handleOnSubmit } className="form-control profile">
                 <div className="form-edit-profile">
                     <label className="form-label">Image:</label>
                     <input className='form-control' name= 'image' type='file' onChange={handleOnChange} />

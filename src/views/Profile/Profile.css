@@ -7,7 +7,9 @@
     background-color: var(--black);
     color: whitesmoke;
     display: flex;
-    flex-direction: column;
+    justify-content: space-between;
+    padding: 100px;
+    align-items: center;
 }
 
 .img {
@@ -24,8 +26,8 @@
 }
 
 .links-profile a:hover {
-    border-right: 4px solid var(--pink-one);
-    border-left: 4px solid var(--pink-one);
+    border-right: 4px solid var(--pink-two);
+    border-left: 4px solid var(--pink-two);
 }
 
 .links-profile {
@@ -38,5 +40,19 @@
 
 .links-profile:hover {
     cursor: pointer;
-    background-color: var(--transparent-black);
+}
+
+.beat-user-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    justify-content: center;
+}
+
+.beat-user-info i {
+    color: var(--pink-two);
+}
+
+.beat-user-info p {
+    margin: 0;
 }

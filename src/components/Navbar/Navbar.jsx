@@ -44,9 +44,9 @@ export default function Navbar() {
                     { currentUser && <SearchBar />}
                 </div>
                 <div className='links-navbar'>
-                    { !currentUser && <Link to="/login">Login</Link> }
-                    { !currentUser && <Link to="/register">Register</Link> } 
-                    { currentUser && <Link to="/notification"><Notification /></Link>}
+                    { !currentUser && <Link className='links-nav' to="/login">Login</Link> }
+                    { !currentUser && <Link className='links-nav' to="/register">Register</Link> } 
+                    { currentUser && <Link  className='links-navbar-currentUser'to="/notification"><Notification /></Link>}
                     { currentUser && <Cart />}
                     { currentUser && <div className="image-profile" style={styles} onClick={openSidebar}></div> }
                 </div>

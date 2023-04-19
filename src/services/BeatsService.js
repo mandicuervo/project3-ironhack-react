@@ -17,3 +17,5 @@ export const addCountPlay = (beatId) => authenticatedHttp.put(`/beat/count/${bea
 export const getAllBeatsFromUser = (id) => authenticatedHttp.get(`/beats/count/${id}`)
 
 export const getTopBeats = () => authenticatedHttp.get('/beats/top')
+
+export const getSearchResults = (searchText) => authenticatedHttp.get(`/search/${searchText}`);

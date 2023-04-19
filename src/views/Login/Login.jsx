@@ -62,8 +62,7 @@ export default function Login() {
 
     return(
         <div className="Login">
-            <h1>Login</h1>
-            <form onSubmit={handleSubmit}>
+            <form className='form-login' onSubmit={handleSubmit}>
                 <FormControl text="Email" error={touched.email && errors.email} htmlFor="email">
                     <Input 
                         id="email"
@@ -98,7 +97,7 @@ export default function Login() {
             </form>
             <div className="google-button" onClick={handleOnClick}>
               <img className="google-icon" src={googleIcon} alt="google icon" />
-              <p>Login with Google</p>
+              <p>Login</p>
             </div>
         </div>
     )

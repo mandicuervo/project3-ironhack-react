@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import CheckoutForm from "../../components/CheckoutForm/CheckoutForm";
 import './Checkout.css';
 
 export default function Checkout() {
@@ -38,9 +39,7 @@ export default function Checkout() {
                     <div>
                         TOTAL: $ {totalPrice}
                     </div>
-                    <div>
-                        <button type="submit">BUY</button>
-                    </div>
+                    <CheckoutForm />
                 </div>
                 :
                 <div>

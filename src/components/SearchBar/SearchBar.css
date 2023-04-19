@@ -4,3 +4,7 @@
     border-radius: 100px;
     border: none;
 }
+
+.SearchBar i {
+    color: var(--black);
+}

@@ -7,7 +7,6 @@
     background-position: center;
     color:whitesmoke;
     padding-top: 70px;
-    font-family: 'Roboto Mono', monospace;
     margin-top: 60px;
 }
 
@@ -48,7 +47,6 @@
 
 .home-page-div {
     display: flex;
-    font-family: 'Roboto Mono', monospace;
     gap: 30px;
 }
 

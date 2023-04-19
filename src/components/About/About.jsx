@@ -1,10 +1,13 @@
+import './About.css'
+
 export default function About({user}) {
     return(
         <div className="About">
             {
                 user.bio?
-                <div>
-                    <p>{user.bio}</p>
+                <div className='bio'>
+                    <i className='bx bxs-user-pin bx-lg'></i>
+                    <p>"{user.bio}"</p>
                 </div>
                 :
                 <div>

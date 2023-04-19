@@ -39,7 +39,6 @@ export default function Checkout() {
                     <div>
                         TOTAL: $ {totalPrice}
                     </div>
-                    <CheckoutForm />
                 </div>
                 :
                 <div>

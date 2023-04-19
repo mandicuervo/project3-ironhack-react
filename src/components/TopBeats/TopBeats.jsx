@@ -23,6 +23,7 @@ export default function TopBeats() {
                     topBeats.map(beat => (
                         <div className="trending-beat-card" key={ beat._id }>
                             <h3>{ beat.name }</h3>
+                            <img src={ beat.image } alt={ beat.name }/>
                             <p>{ beat.playingCount }</p>
                         </div>
                     ))

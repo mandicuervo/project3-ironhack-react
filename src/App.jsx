@@ -14,6 +14,7 @@ import LoadingScreen from './views/LoadingScreen/LoadingScreen'
 import Checkout from './views/Checkout/Checkout'
 import Modal from './components/Cart/Modal/Modal'
 import BeatView from './views/BeatView/BeatView'
+import BrowseView from './views/BrowseView/Browse'
 
 function App() {
   return (
@@ -31,9 +32,7 @@ function App() {
           <Route path="/activate/:token" element={<LoadingScreen />} />
 
           <Route path="feed" element={
-              <ProtectedRoute>
                 <Feed />
-              </ProtectedRoute>
           } />
 
           <Route path="account/:component" element={
@@ -52,6 +51,10 @@ function App() {
             <ProtectedRoute>
               <BeatView/>
             </ProtectedRoute>
+          }/>
+
+          <Route path="/browse" element={
+            <BrowseView />
           }/>
 
           <Route path="*" element={<Navigate to="/" replace />} />

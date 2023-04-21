@@ -6,7 +6,8 @@
 
 .card-top-beats-container {
     width: 100%;
-    overflow: auto;
+    overflow-x: auto;
+    overflow-y: hidden;
     display: flex;
     scroll-snap-type: x mandatory;
 }
@@ -23,4 +24,16 @@
     flex-shrink: 0;
     scroll-snap-align: start;
     border-radius: 30px;
+}
+
+.trending-beat-card img {
+    width: 150px;
+    height: 150px;
+    border-radius: 20px;
+}
+
+.info-trending-beats {
+    width: 200px;
+    height: 200px;
+    padding: 30px;
 }

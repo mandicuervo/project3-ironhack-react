@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { Tilt } from "react-tilt";
 import { createComment, deleteComment, getBeatComments } from "../../services/CommentService";
 import AuthContext from '../../contexts/AuthContext';
+import './Comments.css'
 
 const defaultOptions = {
 	reverse:        false,  // reverse the tilt direction
@@ -68,7 +69,7 @@ export default function Comments({ beatId }) {
                         <textarea className="form-control" id="comment" name="comment" rows="2" value={newComment} onChange={handleOnChange}></textarea>
                     </div>
                     {/* <Tilt options={defaultOptions}> */}
-                        <button type="submit">Submit</button>
+                        <button className='btn-send-coment' type="submit">Submit</button>
                     {/* </Tilt>/ */}
                 </form>
             }

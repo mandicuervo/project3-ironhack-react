@@ -1,9 +1,11 @@
 import React, {useState} from 'react'
 import './SearchBar.css';
 import { getSearchResults } from '../../services/BeatsService';
+import { useNavigate } from 'react-router-dom';
 
 export default function SearchBar() {
     const [searchText, setSearchText] = useState('');
+    const navigate = useNavigate();
 
     const handleOnChage = (e) => {
         const { value } = e.target;
@@ -13,7 +15,11 @@ export default function SearchBar() {
     const handleSubmit = (e) => {
         e.preventDefault()
         getSearchResults(searchText)
-        .then(res => console.log(res))
+        .then(res => {
+            setSearchText('')
+            navigate('/browse', { state: { searchResults: res }} )
+        })
+        .catch(err => console.log(err))
     }
     
     return(

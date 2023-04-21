@@ -2,7 +2,7 @@ import { PaymentElement, useElements, useStripe } from "@stripe/react-stripe-js"
 import React, { useContext, useEffect, useState } from "react";
 import AuthContext from "../../contexts/AuthContext";
 import { useNavigate } from 'react-router-dom';
-import { BuyBeats } from "../../services/CartService";
+import { paymentIntent } from "../../services/CartService";
 import './CheckoutForm.css'
 
 export default function CheckoutForm({ id, handleSuccessfulPayment }) {

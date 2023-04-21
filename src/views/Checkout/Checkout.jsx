@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import CheckoutForm from "../../components/CheckoutForm/CheckoutForm";
 import './Checkout.css';
+import CheckoutContainer from "../../components/CheckoutForm/CheckoutContainer/CheckoutContainer";
 
 export default function Checkout() {
     const [orderList, setOrderList] = useState(null);
@@ -39,6 +40,7 @@ export default function Checkout() {
                     <div>
                         TOTAL: $ {totalPrice}
                     </div>
+                    <CheckoutContainer />
                 </div>
                 :
                 <div>

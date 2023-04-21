@@ -2,7 +2,6 @@ import { useEffect, useState, useContext } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import About from '../../components/About/About';
 import Comments from '../../components/Comments/Comments';
-import AuthContext from '../../contexts/AuthContext';
 import './Profile.css'
 import { getUserByUsername } from '../../services/UserService';
 import ListBeats from '../../components/ListBeats/ListBeats';
@@ -65,7 +64,7 @@ export default function Profile() {
                         <div className='beat-user-info'>
                             <i className='bx bx-play-circle bx-md'></i>
                             <p>{playSum} plays</p>
-                            <i class='bx bxs-heart-circle bx-md'></i>
+                            <i className='bx bxs-heart-circle bx-md'></i>
                             <p>{favSum} favorites</p>
                         </div>
                     </div>

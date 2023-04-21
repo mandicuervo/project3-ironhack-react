@@ -77,12 +77,12 @@ export default function ListBeats({handleEdit, reloadPage, userId = null}) {
                             <p>{beat.bpm}bpm</p>
                             <p>{beat.owner.username}</p>
                         </div>
-                        <div>
+                        <div className='edit-trash-btn'>
                             {
                                 currentUser.id === beat.owner.id && 
                                 <>
-                                <button onClick={ ()=>handleEdit(beat._id) }>EDIT</button>
-                                <i className='bx bxs-trash' onClick={ ()=>handleDelete(beat._id) }></i>
+                                <i onClick={ ()=>handleEdit(beat._id) } className='bx bxs-message-square-edit bx-md'></i>
+                                <i className='bx bxs-x-square bx-md' onClick={ ()=>handleDelete(beat._id) }></i>
                                 </>
                             }
                         </div>

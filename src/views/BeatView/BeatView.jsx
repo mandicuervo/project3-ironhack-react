@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Comments from "../../components/Comments/Comments";
 import { useContext, useEffect, useState } from "react";
 import { getOneBeat } from '../../services/BeatsService'
@@ -26,6 +26,7 @@ export default function BeatView() {
     const { id } = useParams();
     const { changeMusic } = useContext(MusicContext);
     const { currentUser } = useContext(AuthContext);
+    const navigate = useNavigate();
 
     useEffect(() => {
         if(id && currentUser){
@@ -63,6 +64,10 @@ export default function BeatView() {
         }
     }
 
+    const goToProfile = (username) => {
+        navigate(`/profile/${username}/beats`)
+    }
+
     return(
         <>
             {
@@ -75,7 +80,7 @@ export default function BeatView() {
                                     <i className='bx bx-play-circle'></i>
                                 </Tilt>
                         </div>
-                        <div className="info">
+                        <div onClick={()=>goToProfile(beatInfo.owner.username)} className="info">
                             <div className="info-user">
                                 <h5>{beatInfo.name}</h5>
                                 <h6>{beatInfo.owner.username}</h6>

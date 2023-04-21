@@ -9,11 +9,15 @@ export default function HomePage() {
     return (
         <div className="HomePage">
             <div className='home-page-content'>
-                <h1>Find the perfect beat</h1>
-                <h1>for your project!</h1>
-                <p>Collaboration between artists and beatmakers has never been easier.</p>
+                <div className='text-home-page'>
+                    <h1>Find the perfect beat</h1>
+                    <h1>for your project!</h1>
+                    <p>Collaboration between artists and beatmakers has never been easier.</p>
+                </div>
+                <div className='search-bar-home-page'>
                     <SearchBar />
                     { !currentUser && <Link to="/register">Start Selling</Link> } 
+                </div>
             </div>
 
             <div className="home-page-info">

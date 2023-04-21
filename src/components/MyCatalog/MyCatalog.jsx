@@ -221,7 +221,7 @@ export default function MyCatalog() {
                 </div>
 
 
-                <button type="submit">Submit</button>
+                <button className='btn-submit-catalog' type="submit">Submit</button>
             </form>
             
             <div className="list-beats">

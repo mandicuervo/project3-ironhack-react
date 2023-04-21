@@ -1,3 +1,14 @@
 .Comments, .form-control {
     padding-top: 60px;
 }
+
+.btn-send-coment {
+    width: fit-content;
+    background-color: var(--pink-two);
+    color: var(--black-secondary);
+}
+
+.btn-send-coment:hover {
+    background-color: var(--pink-one);
+    color: whitesmoke;
+}

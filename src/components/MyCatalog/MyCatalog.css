@@ -42,3 +42,13 @@
     width: 300px;
 }
 
+.btn-submit-catalog {
+    background-color: var(--pink-two);
+    color: var(--black);
+    width: fit-content;
+}
+
+.btn-submit-catalog:hover {
+    color: whitesmoke;
+    background-color: var(--black);
+}

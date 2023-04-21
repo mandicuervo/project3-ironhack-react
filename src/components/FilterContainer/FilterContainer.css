@@ -1,0 +1,6 @@
+.FilterContainer {
+    left: 0;
+    height: 80vw;
+    background-color: azure;
+    position: fixed;
+}

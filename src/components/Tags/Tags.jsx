@@ -16,9 +16,9 @@ export default function Tags({handleTags}) {
         const { key } = e;
         const trimmedInput = input.trim();
       
-        if (key === ',' && trimmedInput.length && !tags.includes(trimmedInput)) {
+        if (key === ',' || key === 'Enter' && trimmedInput.length && !tags.includes(trimmedInput)) {
           e.preventDefault();
-          setTags(prevState => [...prevState, trimmedInput]);
+          setTags([...tags, trimmedInput]);
           setInput('');
         }
       

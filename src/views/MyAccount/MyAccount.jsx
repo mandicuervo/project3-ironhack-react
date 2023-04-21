@@ -3,6 +3,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom'
 import EditProfile from '../../components/EditProfile/EditProfile';
 import MyCatalog from '../../components/MyCatalog/MyCatalog';
 import './MyAccount.css'
+import Favorites from '../../components/Favorites/Favorites';
 
 export default function MyAccount() {
     const [componentToShow, setComponentToShow] = useState('edit')
@@ -37,6 +38,9 @@ export default function MyAccount() {
                 }
                 {
                     componentToShow === 'my-catalog' && <MyCatalog />
+                }
+                                {
+                    componentToShow === 'favorites' && <Favorites />
                 }
             </div>
         </div>

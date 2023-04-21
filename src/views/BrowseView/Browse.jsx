@@ -49,29 +49,46 @@ export default function BrowseView() {
 
     return(
         <div className="BrowseView">
-            <FilterContainer handleFilter={handleFilter}/>
-            { filteredBeats.length > 0 && <h3>Beats:</h3>}
-            {
-                filteredBeats.length > 0 &&
-                filteredBeats.map(beat => (
-                    <div key={beat._id} className="search-beats-list" onClick={()=>goToBeatDetail(beat._id)}>
-                        <img src={beat.image} alt={beat.name} width="20px"/>
-                        <h5>{beat.name}</h5>
-                        <h6>{beat.owner.username}</h6>
+            <div className="browse-container">
+                <FilterContainer handleFilter={handleFilter}/>
+                <div className="browse-users">
+                    { filteredBeats.length > 0 && <h3>Beats</h3>}
+                    <div className="browse-list">
+                        {
+                            filteredBeats.length > 0 &&
+                            filteredBeats.map(beat => (
+                                <div key={beat._id} className="search-beats-list" onClick={()=>goToBeatDetail(beat._id)}>
+                                    <img src={beat.image} alt={beat.name}/>
+                                    <div>
+                                        <h5>{beat.name}</h5>
+                                        <h6>{beat.owner.username}</h6>
+                                        <p>{beat.key}</p>
+                                        <p>{beat.scale}</p>
+                                        <p>{beat.mood}</p>
+                                        <p>{beat.genre}</p>
+                                    </div>
+                                </div>
+                            ))
+                        }
+
                     </div>
-                ))
-            }
-            { usersList.length > 0 && <h3>Users:</h3> }
-            {
-                usersList.length > 0 && 
-                usersList.map(user => (
-                    <div key={user.id} className="search-users-list" onClick={()=>goToProfile(user.username)}>
-                        <img src={user.image} alt={user.name}></img>
-                        <h5>{user.username}</h5>
-                        <h6>{user.name}</h6>
+                </div>
+                <div className="browse-users">
+                    { usersList.length > 0 && <h3>Users</h3> }
+                    <div className="browse-cards">
+                        {
+                            usersList.length > 0 && 
+                            usersList.map(user => (
+                                <div key={user.id} className="search-users-list" onClick={()=>goToProfile(user.username)}>
+                                    <div style={{backgroundImage: `url(${user.image})`}}></div>
+                                    <h5>{user.username}</h5>
+                                    <h6>{user.name}</h6>
+                                </div>
+                            ))
+                        }
                     </div>
-                ))
-            }
+                </div>
+            </div>
         </div>
     )
 }

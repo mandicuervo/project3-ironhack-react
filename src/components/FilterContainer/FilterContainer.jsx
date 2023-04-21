@@ -25,36 +25,41 @@ export default function FilterContainer({handleFilter}) {
     }, [keyFilter, genreFilter, instrumentFilter])
 
     return(
-        <div className="FilterContainer">
-            <h2>Filter by:</h2>
-            <div>
-                <h3>Keys</h3>
-                <select name="keys" className='key' onChange={handleFilterSelect}>
-                    {
-                        keys.map(key => (
-                            <option key={key} className='key' value={key}>{key}</option>
-                        ))
-                    }
-                </select>
+        <div className='Filter'>
+            <h2>Filter beat by:</h2>
+            <div className="FilterContainer">
+                <div className='filters'>
+                    <h3>Keys</h3>
+                    <select name="keys" className='key' onChange={handleFilterSelect}>
+                        {
+                            keys.map(key => (
+                                <option key={key} className='key' value={key}>{key}</option>
+                            ))
+                        }
+                    </select>
+                </div>
+                <div className='filters'>
+                    <h3>Genres</h3>
+                    <select name="genres" onChange={handleFilterSelect}>
+                        {
+                            genres.map(genre => (
+                                <option key={genre} className='genre' value={genre}>{genre}</option>
+                            ))
+                        }
+                    </select>
+                </div >
+                <div className='filters'>
+                    <h3>Instruments</h3>
+                    <select name="instruments" onChange={handleFilterSelect}>
+                        {
+                            instruments.map(instrument => (
+                                <option key={instrument} className='instrument' value={instrument}>{instrument}</option>
+                            ))
+                        }
+                    </select>
+                </div>
             </div>
-            <div>
-                <h3>Genres</h3>
-                <select name="genres" onChange={handleFilterSelect}>
-                    {
-                        genres.map(genre => (
-                            <option key={genre} className='genre' value={genre}>{genre}</option>
-                        ))
-                    }
-                </select>
-            </div>
-                <h3>Instruments</h3>
-                <select name="instruments" onChange={handleFilterSelect}>
-                    {
-                        instruments.map(instrument => (
-                            <option key={instrument} className='instrument' value={instrument}>{instrument}</option>
-                        ))
-                    }
-                </select>
+
         </div>
     )
 }

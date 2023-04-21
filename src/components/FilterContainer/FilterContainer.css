@@ -1,6 +1,33 @@
-.FilterContainer {
+.Filter {
     left: 0;
-    height: 80vw;
-    background-color: azure;
+    height: 105vw;
     position: fixed;
+    padding: 30px;
+    background-color: var(--black-secondary);
+    color: whitesmoke;
+}
+
+.FilterContainer {
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.filter {
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+}
+
+
+.filters select {
+    width: 100%;
+    padding: 15px;
+    border-radius: 20px;
+}
+
+.filters option {
+    padding: 15px;
+    border-radius: 20px;
 }

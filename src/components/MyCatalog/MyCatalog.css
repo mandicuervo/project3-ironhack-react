@@ -3,6 +3,7 @@
     flex-direction: column;
     background-color: var(--black);
     color: whitesmoke;
+    min-height: 100vh;
 }
 
 .MyCatalog h5 {

@@ -20,9 +20,11 @@ export default function Profile() {
         if(username){
             getUserByUsername(username)
             .then(res => {
+                console.log(res)
                 setUser(res)
                 getAllBeatsFromUser(res.id)
                 .then(list => {
+                    console.log(list)
                     let plays = 0;
                     let favorites = 0;
                     list.map(beat => {
@@ -62,10 +64,14 @@ export default function Profile() {
                             <h3>{user.email}</h3>
                         </div>
                         <div className='beat-user-info'>
-                            <i className='bx bx-play-circle bx-md'></i>
-                            <p>{playSum} plays</p>
-                            <i className='bx bxs-heart-circle bx-md'></i>
-                            <p>{favSum} favorites</p>
+                            <div>
+                                <i className='bx bx-play-circle bx-md'></i>
+                                <p>{playSum} plays</p>
+                            </div>
+                            <div>
+                                <i className='bx bxs-heart-circle bx-md'></i>
+                                <p>{favSum} favorites</p>
+                            </div>
                         </div>
                     </div>
 

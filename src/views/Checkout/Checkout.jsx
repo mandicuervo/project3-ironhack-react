@@ -27,7 +27,7 @@ export default function Checkout() {
             <h1>CHECKOUT</h1> 
             {
                 orderList && orderList.length > 0 ?
-                <div>
+                <div className="checkout-container">
                     <h2>Your order</h2>
                     {
                         orderList.map(item => (
@@ -37,7 +37,7 @@ export default function Checkout() {
                             </div>
                         ))
                     }
-                    <div>
+                    <div className="total-price">
                         TOTAL: $ {totalPrice}
                     </div>
                     <CheckoutContainer />

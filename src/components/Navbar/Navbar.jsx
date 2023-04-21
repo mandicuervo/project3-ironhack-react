@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom'
 import AuthContext  from '../../contexts/AuthContext'
 import { useContext, useEffect, useReducer, useState } from 'react';
 import Sidebar from '../Sidebar/Sidebar';
-import SearchBar from '../SearchBar/SearchBar';
 import Cart from '../Cart/Cart';
 import Notification from '../Notfication/Notification';
 
@@ -39,9 +38,6 @@ export default function Navbar() {
                     <Link to={"/"}>
                         <div className='logo'></div>
                     </Link>
-                </div>
-                <div className='search-bar'>
-                    { window.location.pathname !== '/' && currentUser && <SearchBar />}
                 </div>
                 <div className='links-navbar'>
                     { !currentUser && <Link className='links-nav' to="/login">Login</Link> }

@@ -5,7 +5,7 @@ import AuthContext from "../../contexts/AuthContext"
 import { editUser } from "../../services/UserService";
 
 export default function EditProfile() {
-    const [image, setImage] = useState([]);
+    const [image, setImage] = useState('');
     const [user, setUser] = useState({
         name: "",
         bio: "",
@@ -35,6 +35,7 @@ export default function EditProfile() {
     };
     
     const handleOnSubmit = (e) => {
+        console.log(image, user)
         e.preventDefault()
         let formData = new FormData();
 
@@ -47,7 +48,7 @@ export default function EditProfile() {
         for (let img of image) {
             formData.append("image", img);
         }
-        
+    
         editUser(formData)
         .then(response => {
             setUpdateImageNavbar(!updateImageNavbar);

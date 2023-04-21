@@ -39,28 +39,33 @@ export default function TopBeats() {
     }
     
     return(
-        <div className="TopBeats">
-            <h1>Tranding Beats</h1>
-            <p>Discover the most played beats!</p>
-            <div className="card-top-beats-container">
-                {
-                    topBeats.length > 0 &&
-                    topBeats.map(beat => (
-                        <Tilt options={defaultOptions} key={ beat._id }>
-                            <div className="trending-beat-card">
-                                <div onClick={()=>handleOnPlay(beat._id)}>
-                                        <img src={ beat.image } alt={ beat.name }/> 
+        <>
+        {
+            topBeats && topBeats.length > 0 &&
+            <div className="TopBeats">
+                <h1>Trending Beats</h1>
+                <p>Discover the most played beats!</p>
+                <div className="card-top-beats-container">
+                    {
+                        topBeats.length > 0 &&
+                        topBeats.map(beat => (
+                            <Tilt options={defaultOptions} key={ beat._id }>
+                                <div className="trending-beat-card">
+                                    <div onClick={()=>handleOnPlay(beat._id)}>
+                                            <img src={ beat.image } alt={ beat.name }/> 
+                                    </div>
+                                    <div onClick={()=>goToBeatDetail(beat._id)}className="info-trending-beats-text">
+                                        <h5><b>{ beat.name }</b></h5>
+                                        <p>{ beat.playingCount } plays</p>
+                                        <p>{ beat.genre }</p>
+                                    </div>
                                 </div>
-                                <div onClick={()=>goToBeatDetail(beat._id)}className="info-trending-beats-text">
-                                    <h5><b>{ beat.name }</b></h5>
-                                    <p>{ beat.playingCount } plays</p>
-                                    <p>{ beat.genre }</p>
-                                </div>
-                            </div>
-                        </Tilt>
-                    ))
-                }
+                            </Tilt>
+                        ))
+                    }
+                </div>
             </div>
-        </div>
+        }
+        </>
     )
 }

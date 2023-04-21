@@ -1,5 +1,6 @@
 .MyProfile {
     padding-top: 60px;
+    background-color: var(--black);
 }
 
 .header-profile {
@@ -44,9 +45,16 @@
 
 .beat-user-info {
     display: flex;
-    align-items: center;
+    flex-direction: column;
+    align-items: flex-start;
     gap: 10px;
-    justify-content: center;
+    justify-content: flex-start;
+}
+
+.beat-user-info div {
+    align-items: center;
+    display: flex;
+    gap: 10px;
 }
 
 .beat-user-info i {

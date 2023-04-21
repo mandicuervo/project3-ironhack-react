@@ -1,4 +1,99 @@
 .BrowseView {
     padding-left: 300px;
     padding-top: 60px;
+    background-color: var(--black);
+    color:whitesmoke;
+}
+
+.browse-users {
+    margin-top: 30px;
+}
+
+.browse-container {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    padding-left: 90px;
+    min-height: 100vh;
+}
+
+.browse-list {
+    display: flex;
+    overflow-x: auto;
+    overflow-y: hidden;
+    display: flex;
+    gap: 40px;
+    scroll-snap-type: x mandatory;
+}
+
+.browse-list::-webkit-scrollbar {
+    display: none;
+}
+
+.search-beats-list {
+    cursor: pointer;
+    padding: 15px;
+    border-radius: 10px;
+    width: 300px;
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    background-color: var(--black-secondary);
+}
+
+.search-beats-list img {
+    width: 100px
+}
+
+.search-beats-list h5 {
+    font-size: 14px;
+    font-weight: 600;
+    margin: 0;
+}
+
+.search-beats-list h6 {
+    font-size: 14px;
+    margin: 0;
+}
+
+.search-beats-list p {
+    font-size: 12px;
+    margin: 0;
+}
+
+.search-beats-list img {
+    width: 100px
+}
+
+.browse-cards {
+    display: flex;
+    overflow-x: auto;
+    overflow-y: hidden;
+    display: flex;
+    gap: 40px;
+    scroll-snap-type: x mandatory;
+}
+
+.browse-cards::-webkit-scrollbar {
+    display: none;
+}
+
+.search-users-list {
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    padding: 15px;
+    border-radius: 10px;
+    min-width: 234px;
+    gap: 20px;
+    align-items: center;
+    background-color: var(--black-secondary);
+}
+
+.search-users-list div {
+    width: 100px;
+    height: 100px;
+    background-color: aquamarine;
+    background-size: cover;
+    border-radius: 50px;
 }

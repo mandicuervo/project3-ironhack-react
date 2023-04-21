@@ -9,12 +9,14 @@ export default function Modal() {
         <>
             { beatToAdd && isModalOpen &&
                 <div className="Modal">
-                    <i onClick={ closeModal }className='bx bxs-x-square'></i>
-                    <p><b>EXCLUSIVE LICENSE</b></p>
+                    <i onClick={ closeModal }className='bx bx-x'></i>
+                    <div className='modal-top-container'>
+                        <p><b>EXCLUSIVE LICENSE</b></p>
+                    </div>
                     <div className='info-user-beat'>
+                        <div style={{backgroundImage: `url(${beatToAdd.image})`}}/>
                         <h2>{ beatToAdd.name }</h2>
                         <h6>{ beatToAdd.owner.username }</h6>
-                        <img src={beatToAdd.image} alt={beatToAdd.name}/>
                     </div>
                     <div className='formats'>
                         <p>MP3</p>
@@ -44,21 +46,9 @@ export default function Modal() {
                             <h6>Unlimited</h6>
                             <p>Audio Streamings</p>
                         </div>
-
-                        <div className='radio'>
-                            <i className='bx bxs-radio'></i>
-                            <p>Radio</p>
-                        </div>
-
-                        <div className='tv'>
-                            <i className='bx bxs-tv'></i>
-                            <p>Television</p>
-                        </div>
-                    </div>
-                    
+                    </div>                    
                     <div className='observation-contract'>
-                        <p>Unlimited non-profit.</p>
-                        <p>Unlimited for-profit performances and 20% royalty share.</p>
+                        <p>Unlimited non-profit. Unlimited for-profit performances and 20% royalty share.</p>
                     </div>
 
                     <button onClick={ addItemToCart }>Comprar</button>

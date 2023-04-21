@@ -1,52 +1,118 @@
 .Modal {
-    background: rgb(36,36,36);
-    width: 400px;
+    background: var(--transparent-black);
+    backdrop-filter: blur(8px);
+    width: 500px;
     color: white;
-    position: absolute;
-    top: 10%;
-    right: 35%;
-    margin: 0 auto;
+    position: fixed;
+    top: 12%;
+    left: 50%;
+    margin-left: -250px;
     z-index: 3;
-    border-radius: 50px;
+    border-radius: 20px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     gap: 10px;
-    padding: 30px;
     font-size: xx-small;
+    overflow: hidden;
 }
-.info-user-beat img {
+
+.Modal .bx-x {
+    position: absolute;
+    cursor: pointer;
+    top: 10px;
+    font-size: 21px;
+    right: 15px;
+    color: whitesmoke;
+    font-weight: 600;
+}
+
+.modal-top-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+    width: 100%;
+    border-bottom: 1px solid var(--black);
+}
+
+.modal-top-container p {
+    margin: 0;
+}
+
+.info-user-beat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.info-user-beat div {
+    background-size: contain;
+    background-repeat: no-repeat;
     width: 100px;
-    height: 80px;
+    height: 100px;
+    border-radius: 15px;
+}
+
+.info-user-beat h2 {
+    margin: 0;
+    margin-top: 10px;
+    font-weight: 900;
+    font-size: 20px;
+}
+
+.info-user-beat h6 {
+    margin: 0;
+    font-size: 12px;
 }
 
 .formats {
     display: flex;
-    gap: 30px;
-    font-size: small;
+    gap: 20px;
 }
 
 .formats p {
-    display: flex;
-    justify-content: center;
-    width: 50px;
-    height: max-content;
-    background-color: rgb(52, 52, 52);
-    color: whitesmoke;
+    margin: 0;
     border-radius: 10px;
+    padding: 10px;
+    background-color: var(--black);
 }
 
 .info-contract {
+    margin-top: 15px;
+    width: 100%;
     display: flex;
     flex-wrap: wrap;
-    gap: 20px;
     justify-content: space-around;
+}
+
+.info-contract div{
+    display: flex;
+    flex-direction: column;
     align-items: center;
-    font-size: xx-small;
-    
+    gap: 8px;
+}
+
+.bxs-time-five, .bx-album, .bxs-video, .bx-broadcast {
+    color: var(--pink-two);
 }
 
 .observation-contract {
-    font-size: xx-small;
+    width: 90%;
+}
+
+.Modal button {
+    background-color: var(--pink-two);
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 14px;
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+.Modal button:hover {
+    background-color: var(--pink-one);
+    color: whitesmoke;
 }

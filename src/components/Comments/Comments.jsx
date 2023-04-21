@@ -64,7 +64,7 @@ export default function Comments({ beatId }) {
             {
                 currentUser &&
                 <form onSubmit={handleOnSubmit}>
-                    <div className="mb-3">
+                    <div className="mb-3 form-comment-container">
                         <label htmlFor="comment" className="form-label">Let us know what you think about this beat!</label>
                         <textarea className="form-control" id="comment" name="comment" rows="2" value={newComment} onChange={handleOnChange}></textarea>
                     </div>
@@ -76,13 +76,16 @@ export default function Comments({ beatId }) {
             {
                 comments?.length > 0 &&
                 comments.map(comment => (
-                    <div key={ comment.id }>
-                        <h4>{ comment.user.username }</h4>
-                        <p>{ comment.comment }</p>
-                        {
-                            currentUser.id === comment.user._id &&
-                            <i className='bx bxs-x-square' onClick={() => handleDeleteComment(comment.id)}></i>
-                        }
+                    <div className="comment-div" key={ comment.id }>
+                        <img src={comment.user.image} alt="image" width="90px" />
+                        <div>
+                            <h4>{ comment.user.username }</h4>
+                            <p>{ comment.comment }</p>
+                            {
+                                currentUser.id === comment.user._id &&
+                                <i className='bx bxs-x-square' onClick={() => handleDeleteComment(comment.id)}></i>
+                            }
+                        </div>
                     </div>
                 ))
             }

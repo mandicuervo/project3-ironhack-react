@@ -1,8 +1,9 @@
 .BeatView {
-    padding-top: 80px;
-    padding-left: 40px;
+    padding-top: 100px;
+    padding-left: 100px;
     background-color: var(--black);
     color: whitesmoke;
+    min-height: 100vh;
 }
 
 .beat-info-play {
@@ -25,9 +26,11 @@
 }
 
 .info {
-    padding: 15px;
+    padding: 50px;
+    justify-content: center;
     display: flex;
-    gap:80px
+    gap: 80px;
+    align-items: center;
 }
 
 .info-beat {
@@ -36,7 +39,6 @@
     color:  rgb(112, 112, 112);
     font-weight: bold;
 }
-
 
 .tilt-play {
     width: fit-content;

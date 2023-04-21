@@ -19,3 +19,7 @@ export const getAllBeatsFromUser = (id) => authenticatedHttp.get(`/beats/count/$
 export const getTopBeats = () => authenticatedHttp.get('/beats/top')
 
 export const getSearchResults = (searchText) => authenticatedHttp.get(`/search/${searchText}`);
+
+export const getFavoriteBeats = (id) => authenticatedHttp.get(`/favorites/${id}`);
+
+

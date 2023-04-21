@@ -1,14 +1,36 @@
 .Comments {
-    padding-top: 60px;
+    padding-top: 80px;
 }
 
 .btn-send-coment {
-    width: fit-content;
+    border-radius: 10px;
+    padding: 10px;
+    width: 150px;
     background-color: var(--pink-two);
     color: var(--black-secondary);
+    font-weight: bolder;
+    margin-top: 10px;
+}
+
+.form-comment-container {
+    width: 80%;
+
 }
 
 .btn-send-coment:hover {
     background-color: var(--pink-one);
     color: whitesmoke;
+}
+
+.comment-div {
+    padding: 10px 0;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    border-bottom: 1px solid rgb(84, 84, 84);
+}
+
+.comment-div .bxs-x-square{
+    color: red;
+    cursor: pointer;
 }

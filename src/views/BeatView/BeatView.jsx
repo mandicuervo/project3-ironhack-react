@@ -1,5 +1,6 @@
 import { useNavigate, useParams } from "react-router-dom";
 import Comments from "../../components/Comments/Comments";
+import OpenModalButton from "../../components/Cart/OpenModalButton/OpenModalButton";
 import { useContext, useEffect, useState } from "react";
 import { getOneBeat } from '../../services/BeatsService'
 import './BeatView.css'
@@ -77,12 +78,11 @@ export default function BeatView() {
                         <div className="tilt-play" onClick={()=>handleOnPlay(beatInfo._id)}>
                                 <Tilt options={defaultOptions} className='image-container'>
                                     <img src={ beatInfo.image } alt={ beatInfo.name } width='200px'/>
-                                    <i className='bx bx-play-circle'></i>
                                 </Tilt>
                         </div>
-                        <div onClick={()=>goToProfile(beatInfo.owner.username)} className="info">
+                        <div className="info">
                             <div className="info-user">
-                                <h5>{beatInfo.name}</h5>
+                                <h5 onClick={()=>goToProfile(beatInfo.owner.username)} >{beatInfo.name}</h5>
                                 <h6>{beatInfo.owner.username}</h6>
                                 <i className={fullHeart ? 'bx bxs-heart' : 'bx bx-heart'} onClick={handleToggleFavorite}></i>
                             </div>
@@ -93,6 +93,12 @@ export default function BeatView() {
                                 <p>{beatInfo.genre}</p>
                                 <p>{beatInfo.tags}</p>
                                 <p>{beatInfo.instrument}</p>
+                                <Tilt options={defaultOptions}>
+                                    {
+                                        currentUser &&
+                                        <OpenModalButton id={beatInfo._id} />
+                                    }
+                                </Tilt>
                             </div>
                             {/* <p>{beatInfo.playingCount}</p> */}
                         </div>

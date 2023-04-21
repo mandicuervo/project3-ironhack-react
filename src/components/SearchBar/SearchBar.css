@@ -3,8 +3,5 @@
     height: 40px;
     border-radius: 100px;
     border: none;
-}
-
-.SearchBar i {
-    color: var(--black);
+    text-align: center;
 }

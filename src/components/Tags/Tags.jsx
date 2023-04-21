@@ -43,19 +43,19 @@ export default function Tags({handleTags}) {
 
     return(
         <div className="Tags">
-            {tags.map((tag, index) => (
-            <div className="tag" key={tag}>
-                {tag}
-                <button onClick={() => deleteTag(index)}>x</button>
-            </div>
+          <input
+              value={input}
+              placeholder="Enter a tag"
+              onKeyDown={onKeyDown}
+              onKeyUp={onKeyUp}
+              onChange={onChange}
+          />
+          {tags.map((tag, index) => (
+          <div className="tag" key={tag}>
+              {tag}
+              <button onClick={() => deleteTag(index)}>x</button>
+          </div>
         ))}
-            <input
-                value={input}
-                placeholder="Enter a tag"
-                onKeyDown={onKeyDown}
-                onKeyUp={onKeyUp}
-                onChange={onChange}
-            />
         </div>
     )
 }

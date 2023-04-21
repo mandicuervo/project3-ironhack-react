@@ -71,41 +71,31 @@ export default function ControlsPlayer({ audioRef, progressBarRef, duration, set
       }, [volume, audioRef, muteVolume]); 
 
     return (
-        <div className='controls-wrapper'>
             <div className='controls'>
+                <div>
+                    <button onClick={skipBackward}>
+                        <i className='bx bxs-chevrons-left'></i>
+                    </button>
 
-                <button onClick={skipBackward}>
-                    <IoPlayBackSharp />
-                </button>
+                    <button onClick= {togglePlayPause}>
+                        {isPlaying ? <i className='bx bx-pause-circle'></i> : <i className='bx bx-play-circle'></i>}
+                    </button>
+                    
+                    <button onClick={skipForward}>
+                        <i className='bx bxs-chevrons-right'></i>
+                    </button>
+                </div>
 
-                <button onClick= {togglePlayPause}>
-                    {isPlaying ? <IoPauseSharp /> : <IoPlaySharp />}
-                </button>
-                
-                <button onClick={skipForward}>
-                    <IoPlayForwardSharp />
-                </button>
-
-                <div className="volume">
-                    <button onClick={() => setVolume((prev) => !prev)}>
-                        {muteVolume || volume < 5 ? (
-                            <IoMdVolumeOff />
-                            ) : volume < 40 ? (
-                                <IoMdVolumeLow />
-                            ) : (
-                                <IoMdVolumeHigh />
-                            )}
-                        </button>
+                {/* <div className="volume">
                     <input 
-                        style={{background: `linear-gradient(to right, #f50 ${volume}%, #ccc ${volume}%)`,}}
+                        style={{background: `linear-gradient(to right, #ffffff ${volume}%, #ffffff ${volume}%)`,}}
                         type="range" 
                         min={0} 
                         max={100} 
                         value={volume} 
                         onChange={(e) => setVolume(e.target.value)} 
                     />
-                </div>
+                </div> */}
             </div>
-        </div>
     );
 };

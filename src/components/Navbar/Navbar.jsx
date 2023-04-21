@@ -36,12 +36,12 @@ export default function Navbar() {
         <div className="Navbar">
             <div className="navbar-container">
                 <div className='title-navbar'>
-                    <Link to={currentUser ? "/feed" : "/"}>
+                    <Link to={"/"}>
                         <div className='logo'></div>
                     </Link>
                 </div>
                 <div className='search-bar'>
-                    { currentUser && <SearchBar />}
+                    { window.location.pathname !== '/' && currentUser && <SearchBar />}
                 </div>
                 <div className='links-navbar'>
                     { !currentUser && <Link className='links-nav' to="/login">Login</Link> }

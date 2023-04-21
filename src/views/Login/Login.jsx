@@ -21,7 +21,7 @@ export default function Login() {
 
     useEffect(() => {
         if(currentUser) {
-            navigate('/feed')
+            navigate('/')
         }
     }, [currentUser])
 
@@ -94,11 +94,11 @@ export default function Login() {
                      : 'Submit'
                     }
                 </button>
+                <div className="google-button-login" onClick={handleOnClick}>
+                    <img className="google-icon-login" src={googleIcon} alt="google icon" />
+                    <p>Login</p>
+                </div>
             </form>
-            <div className="google-button" onClick={handleOnClick}>
-              <img className="google-icon" src={googleIcon} alt="google icon" />
-              <p>Login</p>
-            </div>
         </div>
     )
 }

@@ -28,11 +28,13 @@ export default function Sidebar({ closeSideBar }) {
             <div className='sidebar-container'>
                 { currentUser &&
                     <>
-                    <Link to="/account/edit"><div className="image-profile" style={styles} onClick={closeSideBar} width='100px'></div></Link> 
-                    <h5>Hi, {currentUser.username}</h5>
+                    <div className='sidebar-top-container'>
+                        <div className="image-profile-sidebar" style={styles} onClick={closeSideBar}></div>
+                        <h5>Hi {currentUser.username}</h5>
+                    </div>
                     <div className='links-sidebar'>
-                        <Link to="/account/my-catalog" onClick={closeSideBar}><h6>My account</h6></Link>
-                        <Link to={`/profile/${currentUser.username}/beats`} onClick={closeSideBar}><h6>My Profile</h6></Link>
+                        <Link to="/account/my-catalog" onClick={closeSideBar}>My account</Link>
+                        <Link to={`/profile/${currentUser.username}/beats`} onClick={closeSideBar}>My Profile</Link>
                     </div>
                     <div className='logout'>
                         <Link onClick={userLogout}><span>Logout</span></Link> 

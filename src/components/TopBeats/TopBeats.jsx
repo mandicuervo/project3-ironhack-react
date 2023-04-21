@@ -46,20 +46,18 @@ export default function TopBeats() {
                 {
                     topBeats.length > 0 &&
                     topBeats.map(beat => (
-                                    <Tilt options={defaultOptions} key={ beat._id } className='img-cards'>
-                        <div className="trending-beat-card">
-                            <div className="info-trending-beats">
+                        <Tilt options={defaultOptions} key={ beat._id }>
+                            <div className="trending-beat-card">
                                 <div onClick={()=>handleOnPlay(beat._id)}>
                                         <img src={ beat.image } alt={ beat.name }/> 
                                 </div>
                                 <div onClick={()=>goToBeatDetail(beat._id)}className="info-trending-beats-text">
-                                    <h3>{ beat.name }</h3>
+                                    <h5><b>{ beat.name }</b></h5>
                                     <p>{ beat.playingCount } plays</p>
                                     <p>{ beat.genre }</p>
                                 </div>
                             </div>
-                        </div>
-                                    </Tilt>
+                        </Tilt>
                     ))
                 }
             </div>

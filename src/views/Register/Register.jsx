@@ -22,7 +22,7 @@ export default function Register() {
 
     useEffect(() => {
         if(currentUser) {
-            navigate('/feed')
+            navigate('/')
         }
     }, [currentUser])
 
@@ -118,8 +118,8 @@ export default function Register() {
                         : 'Submit'
                         }
                     </button>
-                    <div className="google-button" onClick={handleOnClick}>
-                            <img className='google-icon' src={googleIcon} alt="google icon"/>
+                    <div className="google-button-register" onClick={handleOnClick}>
+                            <img className='google-icon-register' src={googleIcon} alt="google icon"/>
                             <p>Google</p>
                     </div>
                 </form>

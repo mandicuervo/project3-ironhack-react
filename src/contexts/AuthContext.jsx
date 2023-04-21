@@ -26,7 +26,7 @@ export const AuthProvider = ({ children }) => {
     // Lo guaaardo
     setAccessToken(token);
     const navigateToFeed = () => {
-      navigate('/feed')
+      navigate('/')
     }
     getCurrentUser(navigateToFeed)
 

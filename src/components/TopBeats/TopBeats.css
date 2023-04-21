@@ -1,5 +1,5 @@
 .TopBeats {
-    padding: 30px 0;
+    padding: 50px 5%;
     background-color: var(--black);
     color: whitesmoke;
 }
@@ -10,6 +10,7 @@
     overflow-y: hidden;
     display: flex;
     scroll-snap-type: x mandatory;
+    padding: 20px 0;
 }
 
 .card-top-beats-container::-webkit-scrollbar {
@@ -17,23 +18,38 @@
   }
 
 .trending-beat-card {
-    background-color: #4fe6fe;
+    padding: 10px;
+    display: flex;
+    background: rgb(65,204,239);
+    background: linear-gradient(90deg, rgba(65,204,239,1) 40%, rgba(0,0,0,1) 90%);
     margin-right: 20px;
-    width: 300px;
-    height: 300px;
+    width: 350px;
     flex-shrink: 0;
     scroll-snap-align: start;
-    border-radius: 30px;
+    border-radius: 15px;
+    gap:20px;
 }
 
 .trending-beat-card img {
-    width: 150px;
-    height: 150px;
-    border-radius: 20px;
+    width: 120px;
+    height: 120px;
+    border-radius: 15px;
 }
 
-.info-trending-beats {
-    width: 200px;
-    height: 200px;
-    padding: 30px;
+.trending-beat-card img:hover {
+    cursor: pointer;
+}
+
+.info-trending-beats-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.info-trending-beats-text:hover {
+    cursor: pointer;
+}
+
+.info-trending-beats-text p, .info-trending-beats-text h5 {
+    margin: 0;
 }

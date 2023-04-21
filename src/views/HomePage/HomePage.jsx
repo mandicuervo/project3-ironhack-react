@@ -3,6 +3,7 @@ import SearchBar from '../../components/SearchBar/SearchBar'
 import { useContext } from 'react'
 import AuthContext from '../../contexts/AuthContext'
 import { Link } from 'react-router-dom'
+import TopBeats from '../../components/TopBeats/TopBeats'
 
 export default function HomePage() {
     const { currentUser } = useContext(AuthContext)
@@ -18,6 +19,10 @@ export default function HomePage() {
                     <SearchBar />
                     { !currentUser && <Link to="/register">Start Selling</Link> } 
                 </div>
+            </div>
+
+            <div className='home-page-tranding-beats'>
+                <TopBeats />
             </div>
 
             <div className="home-page-info">

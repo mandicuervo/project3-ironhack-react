@@ -1,6 +1,6 @@
 import { useContext, useEffect, useRef, useState } from "react";
 import MusicContext from "../../contexts/MusicContext";
-// import { tracks } from "../../data/tracks";
+import { Link } from 'react-router-dom';
 
 import ControlsPlayer from "../ControlsPlayer/ControlsPlayer";
 import DisplayTrack from "../DisplayTrack/DisplayTrack";
@@ -41,13 +41,20 @@ export default function AudioPlayer() {
   return(
     <div className="audio-player blur">
       <div className="inner">
-        <DisplayTrack
-          {...{ currentTrack, audioRef, setDuration, progressBarRef }}
-        />
+        <div className="player-top">
+          <DisplayTrack
+            {...{ currentTrack, audioRef, setDuration, progressBarRef }}
+          />
 
-        <ControlsPlayer 
-          {...{ audioRef, progressBarRef, duration, setTimeProgress }} 
-        />
+          <div>
+            <Link to={`/beats/${currentMusic._id}`}><h5>{currentMusic?.name}</h5></Link>
+            <div>
+              <ControlsPlayer 
+                {...{ audioRef, progressBarRef, duration, setTimeProgress }} 
+              />
+            </div>
+          </div>
+        </div>
 
         <ProgressBar
           {...{ progressBarRef, audioRef, timeProgress, duration }}

@@ -61,8 +61,9 @@
 }
 
 .image-profile {
-    width: 50px;
-    height: 50px;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
     background-repeat: no-repeat;
     background-size: cover;

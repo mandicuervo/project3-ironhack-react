@@ -17,27 +17,6 @@ const DisplayTrack = ({ currentTrack, audioRef, setDuration, ProgressBarRef }) =
                 ref={audioRef} 
                 onLoadedMetadata={onLoadedMetadata}
             />
-
-            <div className="audio-info">
-
-                <div className="audio-image">
-                {currentTrack?.thumbnail ? (
-                    <img src={currentTrack?.thumbnail} alt="audio avatar" />
-                ) : (
-                    <div className="icon-wrapper">
-                    <span className="audio-icon">
-                        <BsMusicNoteBeamed />
-                    </span>
-                    </div>
-                )}
-                </div>
-
-                <div className="text">
-                    <p className="title">{currentTrack?.name}</p>
-                    <p>{currentTrack?._id}</p>
-                </div>
-                
-            </div>
         </div>
     )
 };

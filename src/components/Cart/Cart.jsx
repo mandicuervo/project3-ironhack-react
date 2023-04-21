@@ -34,7 +34,7 @@ export default function Cart() {
     }
 
     const goToBeats = () => {
-        navigate('/search');
+        navigate('/');
         setShowCart(false);
     }
 

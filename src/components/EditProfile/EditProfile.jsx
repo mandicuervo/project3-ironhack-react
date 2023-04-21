@@ -65,17 +65,17 @@ export default function EditProfile() {
             <h1>Edit Your Profile Here</h1>
             <form onSubmit={ handleOnSubmit } className="form-control profile">
                 <div className="form-edit-profile">
-                    <label className="form-label">Image:</label>
-                    <input className='form-control' name= 'image' type='file' onChange={handleOnChange} />
+                    <label className="form-label"><strong>Image</strong></label>
+                    <input className='form-control mb-3' name= 'image' type='file' onChange={handleOnChange} />
                 
-                    <label className="form-label">Name:</label>
-                    <input className='form-control' name= 'name' value={user.name} type='text' onChange={handleOnChange} />
+                    <label className="form-label"><strong>Name</strong></label>
+                    <input className='form-control mb-3' name= 'name' value={user.name} type='text' onChange={handleOnChange} />
 
-                    <label className="form-label">Bio:</label>
-                    <input className='form-control' name= 'bio' value={user.bio} type='text' onChange={handleOnChange} />
+                    <label className="form-label"><strong>Bio</strong></label>
+                    <input className='form-control mb-3' name= 'bio' value={user.bio} type='text' onChange={handleOnChange} />
                 
-                    <label className="form-label">Username:</label>
-                    <input className='form-control' name='username' value={user.username} type='text' onChange={handleOnChange} />
+                    <label className="form-label"><strong>Username</strong></label>
+                    <input className='form-control mb-3' name='username' value={user.username} type='text' onChange={handleOnChange} />
                 </div>
                 <button type="submit">Submit</button>
             </form>

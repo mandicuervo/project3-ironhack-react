@@ -4,6 +4,7 @@ import EditProfile from '../../components/EditProfile/EditProfile';
 import MyCatalog from '../../components/MyCatalog/MyCatalog';
 import './MyAccount.css'
 import Favorites from '../../components/Favorites/Favorites';
+import Downloads from '../../components/Downloads/Downloads';
 
 export default function MyAccount() {
     const [componentToShow, setComponentToShow] = useState('edit')
@@ -39,8 +40,11 @@ export default function MyAccount() {
                 {
                     componentToShow === 'my-catalog' && <MyCatalog />
                 }
-                                {
+                {
                     componentToShow === 'favorites' && <Favorites />
+                }
+                {
+                    componentToShow === 'downloads' && <Downloads />
                 }
             </div>
         </div>

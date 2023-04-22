@@ -1,0 +1,6 @@
+.Downloads {
+    color: whitesmoke;
+    background-color: var(--black);
+    min-height: calc(100vh - 105px);
+    padding: 60px;
+}

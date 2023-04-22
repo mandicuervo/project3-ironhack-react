@@ -2,10 +2,12 @@ import './Favorites.css'
 import AuthContext from '../../contexts/AuthContext'
 import { useContext, useEffect, useState } from 'react'
 import { getFavoriteBeats } from '../../services/BeatsService';
+import { useNavigate } from 'react-router-dom';
 
 export default function Favorites() {
     const { currentUser } = useContext(AuthContext);
     const [favorites, setFavorites] = useState([]);
+    const navigate = useNavigate();
 
     useEffect(() => {
         if(currentUser) {
@@ -14,6 +16,10 @@ export default function Favorites() {
             .catch(err => console.log(err))
         }
     }, [currentUser])
+
+    const goToBeatDetail = (id) => {
+        navigate(`/beats/${id}`)
+    }
 
     return (
         <>
@@ -24,11 +30,15 @@ export default function Favorites() {
                 <div className='favorites-container'>
                     {
                         favorites.map(favorite => (
-                            <div className='favorite'>
+                            <div className='favorite-content'>
                                 <h5>{favorite.beat.name}</h5>
-                                <p>{favorite.beat.genre}</p>
-                                <p>{favorite.beat.key}</p>
-                                <p>{favorite.beat.mood}</p>
+                                <p>genre: {favorite.beat.genre}</p>
+                                <p>key: {favorite.beat.key}</p>
+                                <p>mood: {favorite.beat.mood}</p>
+                                <p>instrument: {favorite.beat.instrument}</p>
+                                <p>scale: {favorite.beat.scale}</p>
+                                <p>bpm: {favorite.beat.bpm}</p>
+                                <button onClick={()=>goToBeatDetail(favorite.beat._id)}>See Beat</button>
                             </div>
                         ))
                     }

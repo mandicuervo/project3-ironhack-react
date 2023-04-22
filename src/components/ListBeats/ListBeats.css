@@ -1,8 +1,12 @@
 .ListBeats {
+    padding: 30px;
     background-color: var(--black);
     color: whitesmoke;
-    margin: 30px;
     border-radius: 20px;
+}
+
+.ListBeats .bx{
+    cursor: pointer;
 }
 
 .list img {
@@ -49,7 +53,13 @@
     font-size: 40px;
 }
 
-.description-beat p {
+.ListBeats .description-beat {
+    width: 35%;
+    display: flex;
+    gap: 10px;
+}
+
+.ListBeats .description-beat p {
     font-size:smaller;
 }
 

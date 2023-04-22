@@ -93,13 +93,13 @@ export default function BeatView() {
                                 <p>{beatInfo.genre}</p>
                                 <p>{beatInfo.tags}</p>
                                 <p>{beatInfo.instrument}</p>
+                            </div>
                                 <Tilt options={defaultOptions}>
                                     {
                                         currentUser &&
                                         <OpenModalButton id={beatInfo._id} />
                                     }
                                 </Tilt>
-                            </div>
                             {/* <p>{beatInfo.playingCount}</p> */}
                         </div>
                     </div>

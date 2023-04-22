@@ -45,7 +45,7 @@
     gap: 6px;
 }
 
-.description-beat {
+ .MyCatalog .description-beat {
     display: flex;
     flex-wrap: wrap;
     justify-content: flex-start;

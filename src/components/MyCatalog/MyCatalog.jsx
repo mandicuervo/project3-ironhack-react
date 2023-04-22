@@ -36,6 +36,7 @@ export default function MyCatalog() {
 
     const handleEdit = (id) => {
         setIsEdit(true)
+        setSeeForm(true)
         setIdToEdit(id)
 
         getOneBeat(id)
@@ -97,7 +98,8 @@ export default function MyCatalog() {
             postBeat(formData)
             .then(response => {
                 setInfoBeat(initialValues)
-                setReloadPage(true)
+                setReloadPage(!reloadPage)
+                setSeeForm(false)
             })
             .catch(err => console.log(err))
 
@@ -113,6 +115,8 @@ export default function MyCatalog() {
                 setIsEdit(false);
                 setInfoBeat(initialValues)
                 setIdToEdit(null)
+                setReloadPage(!reloadPage)
+                setSeeForm(false)
             })
             .catch(err => console.log(err))
         }
